@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://by4mjqkd0onfa"]
+
+[ext_resource type="Texture2D" uid="uid://6660m0awqhjy" path="res://assets/Mini FX, Items & UI/Mini UI/title-screen.jpg" id="1_ok7o8"]
+[ext_resource type="Texture2D" uid="uid://dajfofobywwic" path="res://assets/Mini FX, Items & UI/Mini UI/game_logo.png" id="2_p8kum"]
+[ext_resource type="FontFile" uid="uid://b5m0bdsyir3gh" path="res://assets/fonts/RevMiniPixel.ttf" id="3_cjr2u"]
+[ext_resource type="Texture2D" uid="uid://diiwho14jq565" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Jumping (32 x 32).png" id="3_rn0es"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63l04"]
+bg_color = Color(0.980392, 0.772549, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.980392, 0.380392, 0, 1)
+expand_margin_top = 5.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xgdw"]
+bg_color = Color(0.980392, 0.772549, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.980392, 0.380392, 0, 1)
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex3os"]
+bg_color = Color(0.980392, 0.380392, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.117647, 0.145098, 1)
+expand_margin_top = 5.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gk1cd"]
+bg_color = Color(0.980392, 0.772549, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.980392, 0.380392, 0, 1)
+
+[sub_resource type="Theme" id="Theme_ksx2h"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("3_cjr2u")
+Button/styles/focus = SubResource("StyleBoxFlat_63l04")
+Button/styles/hover = SubResource("StyleBoxFlat_7xgdw")
+Button/styles/normal = SubResource("StyleBoxFlat_ex3os")
+Button/styles/pressed = SubResource("StyleBoxFlat_gk1cd")
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 640.0
+offset_bottom = 320.0
+texture = ExtResource("1_ok7o8")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Game_logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_p8kum")
+
+[node name="Start_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ksx2h")
+text = "COMEÇAR"
+
+[node name="Credits_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "CRÉDITOS"
+
+[node name="Quit_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SAIR DO JOGO
+"
+
+[node name="Mochi" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_rn0es")
+expand_mode = 2
+flip_h = true

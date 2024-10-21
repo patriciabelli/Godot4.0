@@ -1,0 +1,117 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7p5xpi24l601"]
+
+[ext_resource type="Script" path="res://leveis/script/pause_menu.gd" id="1_j4tim"]
+[ext_resource type="Theme" uid="uid://c3u2qnjlqkmn4" path="res://menu/pause_menu.tres" id="1_l6f2u"]
+[ext_resource type="Texture2D" uid="uid://cn1cf0f64gk8y" path="res://assets/EXTRA/pause_1.png" id="3_08j54"]
+[ext_resource type="Texture2D" uid="uid://bktbs88vyljy7" path="res://assets/EXTRA/play_2.png" id="4_1kb4s"]
+[ext_resource type="Texture2D" uid="uid://k7g0wvq4ven2" path="res://assets/EXTRA/game_over.png" id="5_ricqh"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_mxyeg"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_02q87"]
+events = [SubResource("InputEventAction_mxyeg")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_awe3c"]
+
+[sub_resource type="Shortcut" id="Shortcut_jq2mk"]
+events = [SubResource("InputEventAction_awe3c")]
+
+[node name="Pause_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_j4tim")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="bg_overlay" type="ColorRect" parent="Menu"]
+layout_mode = 2
+offset_right = 640.0
+offset_bottom = 320.0
+color = Color(0, 0, 0, 0.258824)
+
+[node name="Menu_pause" type="VBoxContainer" parent="Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -33.0
+offset_right = 39.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Resume_btn" type="Button" parent="Menu/Menu_pause"]
+layout_mode = 2
+theme = ExtResource("1_l6f2u")
+shortcut = SubResource("Shortcut_02q87")
+text = "VOLTAR"
+
+[node name="Quit_tbn" type="Button" parent="Menu/Menu_pause"]
+layout_mode = 2
+theme = ExtResource("1_l6f2u")
+shortcut = SubResource("Shortcut_jq2mk")
+text = "SAIR DO  JOGO"
+
+[node name="Menu_game_over" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -20.0
+offset_right = 84.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Game_over" type="TextureRect" parent="Menu/Menu_game_over"]
+layout_mode = 2
+texture = ExtResource("5_ricqh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Menu_game_over"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Menu_game_over/HBoxContainer"]
+layout_mode = 2
+text = "Moedas coletadas:"
+
+[node name="Moedas_label" type="Label" parent="Menu/Menu_game_over/HBoxContainer"]
+layout_mode = 2
+text = "10"
+
+[node name="Restart_btn" type="Button" parent="Menu/Menu_game_over"]
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="Pause_play" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_top = 4.0
+offset_bottom = 31.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_08j54")
+texture_pressed = ExtResource("4_1kb4s")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="Menu/Menu_pause/Resume_btn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="Menu/Menu_pause/Quit_tbn" to="." method="_on_quit_tbn_pressed"]
+[connection signal="pressed" from="Menu/Menu_game_over/Restart_btn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="Pause_play" to="." method="_on_pause_play_pressed"]

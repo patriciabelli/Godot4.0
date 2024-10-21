@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://skcjrur3ku5y"]
+
+[ext_resource type="Script" path="res://leveis/script/dialgo_box.gd" id="1_cfgo8"]
+[ext_resource type="Texture2D" uid="uid://dimqcyxrcdpme" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Dialog_Box(16 x 16).png" id="2_y8lqr"]
+[ext_resource type="FontFile" uid="uid://b5m0bdsyir3gh" path="res://assets/fonts/RevMiniPixel.ttf" id="3_mayeh"]
+
+[node name="Dialgo_box" type="MarginContainer"]
+offset_left = 1.0
+offset_right = 40.0
+offset_bottom = 32.0
+script = ExtResource("1_cfgo8")
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_y8lqr")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label_margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Text_label" type="Label" parent="Label_margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_mayeh")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
+
+[node name="Leltter_timer_display" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Leltter_timer_display" to="." method="_on_leltter_timer_display_timeout"]

@@ -1,0 +1,220 @@
+[gd_scene load_steps=13 format=3 uid="uid://bok0qixe2kfjy"]
+
+[ext_resource type="Script" path="res://leveis/script/ground_enemy.gd" id="1_8d4s8"]
+[ext_resource type="Texture2D" uid="uid://dl6b5jbyo2ec8" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Walking (16 x 16).png" id="1_v0thc"]
+[ext_resource type="Texture2D" uid="uid://cwlptbvjlx6im" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Hurt (16 x 16).png" id="3_3lclb"]
+[ext_resource type="Texture2D" uid="uid://dpbk6m1vmjmfe" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Standing (16 x 16).png" id="4_v84xo"]
+[ext_resource type="PackedScene" uid="uid://uw1ry6veemqf" path="res://leveis/pefabs/hitbox.tscn" id="5_yajbi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yhrp"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="Animation" id="Animation_8q2lg"]
+resource_name = "Hurt"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_3lclb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_75qnj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_v0thc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fvxsy"]
+resource_name = "Standing"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_v84xo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y6yak"]
+resource_name = "Walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_v0thc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8xrj"]
+_data = {
+"Hurt": SubResource("Animation_8q2lg"),
+"RESET": SubResource("Animation_75qnj"),
+"Standing": SubResource("Animation_fvxsy"),
+"Walk": SubResource("Animation_y6yak")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6l271"]
+radius = 0.99974
+height = 9.9974
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8d4s8")
+
+[node name="Texture" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_v0thc")
+hframes = 2
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2yhrp")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w8xrj")
+}
+autoplay = "Walk"
+speed_scale = 0.5
+
+[node name="Wall_Detector" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(-8, 0)
+collision_mask = 6
+
+[node name="Hitbox" parent="." instance=ExtResource("5_yajbi")]
+position = Vector2(0, -4)
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1.49012e-08, -8)
+rotation = -1.54799
+shape = SubResource("CapsuleShape2D_6l271")

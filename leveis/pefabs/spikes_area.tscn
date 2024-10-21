@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://maktyox2ve8c"]
+
+[ext_resource type="Script" path="res://leveis/script/spikes_area.gd" id="1_gnosw"]
+[ext_resource type="Texture2D" uid="uid://cdvh5xr31rhra" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Spike.png" id="1_wfbpu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpoek"]
+
+[node name="Spikes-area" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_gnosw")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vpoek")
+
+[node name="Spikes" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_wfbpu")
+region_enabled = true
+region_rect = Rect2(0, 8, 240, 8)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,14 @@
+TextureRect
+Button
+VBoxContainer
+HBoxContainer
+MarginContainer
+AudioStreamPlayer
+Marker2D
+ColorRect
+CanvasLayer
+AnimationPlayer
+CollisionShape2D
+RayCast2D
+Label
+AnimatedSprite2D

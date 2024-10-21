@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgju004i0pbyx"]
+
+[ext_resource type="Script" path="res://leveis/script/cherry.tres.gd" id="1_lwhor"]
+[ext_resource type="Texture2D" uid="uid://bo8iwkajspcuc" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Hopping (16 x 32).png" id="1_nq6ni"]
+[ext_resource type="Texture2D" uid="uid://dl7txq1pc2orf" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Hurt (16 x 32).png" id="2_npvw7"]
+[ext_resource type="PackedScene" uid="uid://uw1ry6veemqf" path="res://leveis/pefabs/hitbox.tscn" id="3_o8aed"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjpfc"]
+atlas = ExtResource("1_nq6ni")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk6op"]
+atlas = ExtResource("1_nq6ni")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e4f6v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjpfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk6op")
+}],
+"loop": true,
+"name": &"Hopping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_npvw7")
+}],
+"loop": false,
+"name": &"Hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdl3p"]
+size = Vector2(12, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhq4i"]
+size = Vector2(15, 4.5)
+
+[node name="Cherry" type="CharacterBody2D"]
+position = Vector2(0, -15)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_lwhor")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e4f6v")
+animation = &"Hopping"
+autoplay = "Hopping"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_hdl3p")
+
+[node name="Wall_detector" type="RayCast2D" parent="."]
+position = Vector2(0, 11)
+target_position = Vector2(-10, 0)
+collision_mask = 6
+
+[node name="Hitbox" parent="." instance=ExtResource("3_o8aed")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-0.5, 4.25)
+shape = SubResource("RectangleShape2D_dhq4i")

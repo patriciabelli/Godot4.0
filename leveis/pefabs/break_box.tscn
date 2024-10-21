@@ -1,0 +1,143 @@
+[gd_scene load_steps=11 format=3 uid="uid://ctrt1rsojdqqk"]
+
+[ext_resource type="Texture2D" uid="uid://dg3a8tcj78th5" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="1_ikl7w"]
+[ext_resource type="Script" path="res://leveis/script/break_box.gd" id="1_tlgex"]
+[ext_resource type="Shader" path="res://shaders/hit_flash.gdshader" id="2_lno74"]
+[ext_resource type="AudioStream" uid="uid://wuxhn433oqt0" path="res://Sounds/hit_block.wav" id="4_26a84"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4ump"]
+resource_local_to_scene = true
+shader = ExtResource("2_lno74")
+shader_parameter/active = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f35dd"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_5owuo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:material:shader_parameter/active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wihks"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.929412, 0.196078, 0.25098, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cea2j"]
+resource_name = "hit-flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvs6g"]
+_data = {
+"RESET": SubResource("Animation_5owuo"),
+"hit": SubResource("Animation_wihks"),
+"hit-flash": SubResource("Animation_cea2j")
+}
+
+[node name="Break-box" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_tlgex")
+pieces = PackedStringArray("res://assets/Seasonal Tilesets/5 - Misc. universal tiles/brick-piece-01.png", "res://assets/Seasonal Tilesets/5 - Misc. universal tiles/brick-piece-02.png", "res://assets/Seasonal Tilesets/5 - Misc. universal tiles/brick-piece-03.png", "res://assets/Seasonal Tilesets/5 - Misc. universal tiles/brick-piece-04.png")
+
+[node name="Texture" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_c4ump")
+texture = ExtResource("1_ikl7w")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_f35dd")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nvs6g")
+}
+
+[node name="Spawn_coin" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="Hit_block" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_26a84")
+volume_db = 10.0

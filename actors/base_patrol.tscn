@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=3 uid="uid://dq6qkpmueow6d"]
+
+[ext_resource type="Script" path="res://leveis/script/rocket_cherry.gd" id="1_dkvbx"]
+[ext_resource type="Texture2D" uid="uid://ckpnmvcg3mylp" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Flying (16 x 32).png" id="2_p7a12"]
+[ext_resource type="Texture2D" uid="uid://dbj0y5e7s48og" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Hurt_Falling (16 x 32).png" id="3_w0whc"]
+[ext_resource type="PackedScene" uid="uid://uw1ry6veemqf" path="res://leveis/pefabs/hitbox.tscn" id="4_21ok7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwcck"]
+atlas = ExtResource("2_p7a12")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_327bp"]
+atlas = ExtResource("2_p7a12")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p74jm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwcck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_327bp")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w0whc")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75nlm"]
+size = Vector2(12, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af2h2"]
+size = Vector2(12, 4)
+
+[sub_resource type="Curve2D" id="Curve2D_22x86"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -21, 0, 0, 0, 0, 0, -21, 0, 0, 0, 0, 0, -95, 0, 0, 0, 0, 0, -122)
+}
+point_count = 4
+
+[sub_resource type="Animation" id="Animation_4blu4"]
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path/Path_follow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_y4axx"]
+resource_name = "patrol"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path/Path_follow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dp2j0"]
+_data = {
+"RESET": SubResource("Animation_4blu4"),
+"patrol": SubResource("Animation_y4axx")
+}
+
+[node name="Base_patrol" type="Node2D"]
+
+[node name="Rocket_cherry" type="CharacterBody2D" parent="."]
+position = Vector2(0, -0.80127)
+collision_layer = 4
+script = ExtResource("1_dkvbx")
+
+[node name="Anim" type="AnimatedSprite2D" parent="Rocket_cherry"]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_p74jm")
+animation = &"hurt"
+autoplay = "flying"
+
+[node name="Collision" type="CollisionShape2D" parent="Rocket_cherry"]
+visible = false
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_75nlm")
+
+[node name="Hitbox" parent="Rocket_cherry" instance=ExtResource("4_21ok7")]
+
+[node name="Collision" type="CollisionShape2D" parent="Rocket_cherry/Hitbox"]
+visible = false
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_af2h2")
+debug_color = Color(0.8777, 0.217508, 0.279508, 0.42)
+
+[node name="Path" type="Path2D" parent="."]
+position = Vector2(0, 20)
+curve = SubResource("Curve2D_22x86")
+
+[node name="Path_follow" type="PathFollow2D" parent="Path"]
+visible = false
+position = Vector2(0, -20.8013)
+rotates = false
+
+[node name="Remote" type="RemoteTransform2D" parent="Path/Path_follow"]
+remote_path = NodePath("../../../Rocket_cherry")
+
+[node name="Spawn_enemy" type="Marker2D" parent="."]
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dp2j0")
+}
+autoplay = "patrol"
+speed_scale = 0.3
+
+[connection signal="body_entered" from="Rocket_cherry/Hitbox" to="Rocket_cherry" method="_on_hitbox_body_entered"]
