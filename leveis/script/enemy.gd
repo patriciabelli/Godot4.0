@@ -5,7 +5,6 @@ const SPEED = 30.0
 const JUMP_VELOCITY = -400.0
 
 var anim
-#@export var enemy_score := 100
 
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction := Vector2.LEFT
@@ -44,7 +43,6 @@ func kill_air_enemy() -> void:
 		
 func kill_and_score() -> void:
 		Globals.score += 100
-		print(Globals.score)
 		if can_spawn:
 				spawn_new_enemy()
 				queue_free()
