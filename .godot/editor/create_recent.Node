@@ -1,3 +1,5 @@
+AnimationPlayer
+HSeparator
 TextureRect
 Button
 VBoxContainer
@@ -7,8 +9,6 @@ AudioStreamPlayer
 Marker2D
 ColorRect
 CanvasLayer
-AnimationPlayer
 CollisionShape2D
 RayCast2D
 Label
-AnimatedSprite2D

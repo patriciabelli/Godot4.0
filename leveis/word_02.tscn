@@ -378,6 +378,7 @@ centered = false
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(8, -31)
+zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 drag_horizontal_enabled = true
@@ -422,7 +423,7 @@ visibility_mode = 1
 position = Vector2(1383, 253)
 
 [node name="WorldBoundary" type="Area2D" parent="."]
-position = Vector2(1016, 392)
+position = Vector2(536, 399)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary"]

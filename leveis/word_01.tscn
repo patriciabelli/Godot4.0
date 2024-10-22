@@ -362,6 +362,7 @@ position = Vector2(1392, 201)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(8, -31)
+zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 drag_horizontal_enabled = true
@@ -482,7 +483,7 @@ position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_prnm1")
 
 [node name="Spikes-area" parent="." instance=ExtResource("24_h7xn3")]
-position = Vector2(374, 268)
+position = Vector2(374, 271)
 
 [node name="HUD" parent="." instance=ExtResource("25_u6yat")]
 
@@ -498,12 +499,14 @@ position = Vector2(1016, 392)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(0, 6)
 shape = SubResource("WorldBoundaryShape2D_p3wo7")
 
 [node name="Cherry" parent="." instance=ExtResource("32_og6vl")]
 position = Vector2(144, 99)
 
 [node name="Base_patrol2" parent="." instance=ExtResource("9_5qcw1")]
+position = Vector2(0, -1)
 
 [node name="Transition" parent="." instance=ExtResource("34_kdgu5")]
 
