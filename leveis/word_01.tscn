@@ -358,7 +358,7 @@ position = Vector2(1480, 239)
 next_level = "res://leveis/word_02.tscn"
 
 [node name="Player" parent="." instance=ExtResource("3_0656x")]
-position = Vector2(190, 161)
+position = Vector2(224, 169)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(8, -31)
@@ -443,21 +443,24 @@ position = Vector2(1264, 272)
 script = ExtResource("17_w3b8j")
 
 [node name="Ui_left" type="TouchScreenButton" parent="Controls"]
-position = Vector2(8, 120)
+position = Vector2(16, 246)
+scale = Vector2(2, 1.8125)
 texture_normal = ExtResource("14_hfk5e")
 texture_pressed = ExtResource("15_04nrx")
 action = "ui_left"
 visibility_mode = 1
 
 [node name="Ui_right" type="TouchScreenButton" parent="Controls"]
-position = Vector2(48, 120)
+position = Vector2(88, 248)
+scale = Vector2(1.813, 1.813)
 texture_normal = ExtResource("16_6ckaa")
 texture_pressed = ExtResource("17_jfhjw")
 action = "ui_right"
 visibility_mode = 1
 
 [node name="Ui_jump" type="TouchScreenButton" parent="Controls"]
-position = Vector2(280, 121)
+position = Vector2(549, 252)
+scale = Vector2(1.813, 1.813)
 texture_normal = ExtResource("18_ucu1e")
 texture_pressed = ExtResource("19_soyqo")
 action = "ui_accept"
