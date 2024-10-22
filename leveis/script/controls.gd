@@ -12,5 +12,4 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_pause_pressed() -> void:
-	print("click click")
 	get_tree().paused = true
