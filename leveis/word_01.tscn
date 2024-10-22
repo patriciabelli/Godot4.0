@@ -358,7 +358,7 @@ position = Vector2(1480, 239)
 next_level = "res://leveis/word_02.tscn"
 
 [node name="Player" parent="." instance=ExtResource("3_0656x")]
-position = Vector2(1392, 201)
+position = Vector2(190, 161)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(8, -31)
