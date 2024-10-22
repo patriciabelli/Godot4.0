@@ -15,7 +15,6 @@ var seconds = 0
 signal  time_is_up()
 
 func _ready() -> void:
-	print('tuki1 ', Globals)
 	coins_counter.text = str("%04d" % Globals.coins)
 	score_counter.text = str ("%06d" % Globals.score) 
 	life_counter.text = str("%02d" % Globals.player_life)
