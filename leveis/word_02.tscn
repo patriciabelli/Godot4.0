@@ -395,21 +395,24 @@ position = Vector2(784, 225)
 script = ExtResource("20_j3dsd")
 
 [node name="Ui_left" type="TouchScreenButton" parent="Controls"]
-position = Vector2(8, 120)
+position = Vector2(16, 246)
+scale = Vector2(1.813, 1.813)
 texture_normal = ExtResource("21_hxedb")
 texture_pressed = ExtResource("22_6enqo")
 action = "ui_left"
 visibility_mode = 1
 
 [node name="Ui_right" type="TouchScreenButton" parent="Controls"]
-position = Vector2(48, 120)
+position = Vector2(88, 248)
+scale = Vector2(1.813, 1.813)
 texture_normal = ExtResource("23_nmw4q")
 texture_pressed = ExtResource("24_d5s7q")
 action = "ui_right"
 visibility_mode = 1
 
 [node name="Ui_jump" type="TouchScreenButton" parent="Controls"]
-position = Vector2(280, 121)
+position = Vector2(549, 252)
+scale = Vector2(1.813, 1.813)
 texture_normal = ExtResource("25_nvnmv")
 texture_pressed = ExtResource("26_ijlpl")
 action = "ui_accept"

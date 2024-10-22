@@ -72,14 +72,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -84.0
-offset_top = -20.0
-offset_right = 84.0
-offset_bottom = 20.0
+offset_left = -123.0
+offset_top = -61.0
+offset_right = 123.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Game_over" type="TextureRect" parent="Menu/Menu_game_over"]
+visible = false
 layout_mode = 2
 texture = ExtResource("5_ricqh")
 
@@ -88,14 +89,20 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Menu/Menu_game_over/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
 text = "Moedas coletadas:"
 
 [node name="Moedas_label" type="Label" parent="Menu/Menu_game_over/HBoxContainer"]
 layout_mode = 2
-text = "10"
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "0"
 
 [node name="Restart_btn" type="Button" parent="Menu/Menu_game_over"]
 layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
 text = "Reiniciar"
 
 [node name="Pause_play" type="TextureButton" parent="."]

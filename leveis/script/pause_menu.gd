@@ -49,4 +49,5 @@ func _on_restart_btn_pressed() -> void:
 	get_tree().paused = false
 	menu.visible = false
 	menu_game_over.visible = false
+	pause_play.visible = true
 	restart_pressed.emit()

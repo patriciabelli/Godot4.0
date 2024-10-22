@@ -1,6 +1,7 @@
 extends Node
 
 #new signals
+signal player_has_died
 signal coins_updated
 signal score_updated
 signal Globals_updated
