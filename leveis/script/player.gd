@@ -21,7 +21,7 @@ var is_hurted = false
 @onready var ray_left := $Ray_Left as RayCast2D
 @onready var jump_sfx: AudioStreamPlayer = $Jump_sfx as AudioStreamPlayer
 @onready var destroy_sfx = preload("res://Sounds/destroy_sfx.tscn")
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var audio_stream_player:= $AudioStreamPlayer as AudioStreamPlayer
 
 signal player_has_died()
 

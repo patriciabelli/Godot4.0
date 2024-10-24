@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Plataform 2D Godot 4.0"
-run/main_scene="res://leveis/word_01.tscn"
+run/main_scene="res://leveis/pefabs/title_screen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 DialogManager="*res://singletons/dialog_manager.gd"
-Globals="*res://singletons/globals.gd"
+Globals="*res://assets/globals.gd"
 
 [display]
 

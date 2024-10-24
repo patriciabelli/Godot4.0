@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var menu: Control = $Menu
 
+
 @onready var menu_pause: VBoxContainer = $Menu/Menu_pause
 @onready var resume_btn: Button = $Menu/Menu_pause/Resume_btn
 
@@ -43,7 +44,7 @@ func _on_pause_play_pressed() -> void:
 	pause_play.visible = false
 	menu.visible = true
 	get_tree().paused = true
-
+	moedas_label.text = str(Globals.coins)
 
 func _on_restart_btn_pressed() -> void:
 	get_tree().paused = false
@@ -51,3 +52,4 @@ func _on_restart_btn_pressed() -> void:
 	menu_game_over.visible = false
 	pause_play.visible = true
 	restart_pressed.emit()
+	get_tree().reload_current_scene()

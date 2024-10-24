@@ -9,8 +9,8 @@ extends Control
 var minutes = 0
 var seconds = 0
 
-@export_range(0,5) var defalt_minutes := 1
-@export_range(0,59) var defalt_seconds := 0
+@export_range(0,5) var default_minutes := 1
+@export_range(0,59) var default_seconds := 0
 
 signal  time_is_up()
 
@@ -18,7 +18,7 @@ func _ready() -> void:
 	coins_counter.text = str("%04d" % Globals.coins)
 	score_counter.text = str ("%06d" % Globals.score) 
 	life_counter.text = str("%02d" % Globals.player_life)
-	timer_counter.text = str("%02d" % defalt_minutes) + ":" + str("%02d" % defalt_seconds) 
+	timer_counter.text = str("%02d" % default_minutes) + ":" + str("%02d" % default_seconds) 
 	reset_clock_timer() 
 
 func _process(delta: float) -> void:
@@ -39,6 +39,6 @@ func _on_clock_timer_timeout() -> void:
 	timer_counter.text = str("%02d" % minutes) + ":" + str("%02d" % seconds) 
 
 func reset_clock_timer():
-	minutes = defalt_minutes
-	seconds = defalt_seconds
+	minutes = default_minutes
+	seconds = default_seconds
 	

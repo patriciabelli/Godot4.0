@@ -28,8 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n5s70")
-defalt_minutes = 2
-defalt_seconds = 5
+default_seconds = 27
 
 [node name="Clock_timer" type="Timer" parent="Control"]
 autostart = true

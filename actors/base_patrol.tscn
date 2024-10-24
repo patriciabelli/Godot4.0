@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dq6qkpmueow6d"]
+[gd_scene load_steps=15 format=3 uid="uid://dq6qkpmueow6d"]
 
 [ext_resource type="Script" path="res://leveis/script/rocket_cherry.gd" id="1_dkvbx"]
 [ext_resource type="Texture2D" uid="uid://ckpnmvcg3mylp" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Flying (16 x 32).png" id="2_p7a12"]
 [ext_resource type="Texture2D" uid="uid://dbj0y5e7s48og" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Hurt_Falling (16 x 32).png" id="3_w0whc"]
 [ext_resource type="PackedScene" uid="uid://uw1ry6veemqf" path="res://leveis/pefabs/hitbox.tscn" id="4_21ok7"]
+[ext_resource type="AudioStream" uid="uid://dfs51jv1jdeg4" path="res://Sounds/EnemySoundEffect.mp3" id="5_m3afd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fwcck"]
 atlas = ExtResource("2_p7a12")
@@ -110,6 +111,9 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_af2h2")
 debug_color = Color(0.8777, 0.217508, 0.279508, 0.42)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Rocket_cherry"]
+stream = ExtResource("5_m3afd")
+
 [node name="Path" type="Path2D" parent="."]
 position = Vector2(0, 20)
 curve = SubResource("Curve2D_22x86")
@@ -132,3 +136,4 @@ autoplay = "patrol"
 speed_scale = 0.3
 
 [connection signal="body_entered" from="Rocket_cherry/Hitbox" to="Rocket_cherry" method="_on_hitbox_body_entered"]
+[connection signal="finished" from="Rocket_cherry/AudioStreamPlayer" to="Rocket_cherry/Hitbox" method="_on_audio_stream_player_finished"]

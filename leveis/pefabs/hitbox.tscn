@@ -1,9 +1,28 @@
 [gd_scene load_steps=2 format=3 uid="uid://uw1ry6veemqf"]
 
-[ext_resource type="Script" path="res://leveis/script/hitbox.gd" id="1_3p4o3"]
+[sub_resource type="GDScript" id="GDScript_wth5w"]
+script/source = "extends Area2D
+
+@onready var audio_stream_player: AudioStreamPlayer = $\"../AudioStreamPlayer\"
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\":
+		var player = body as PlayerClass
+		
+		audio_stream_player.play()
+			
+		print(\"toca\")
+		player.funcfunc()
+		
+		body.velocity.y = body.JUMP_FORCE
+
+
+func _on_audio_stream_player_finished() -> void:
+	get_parent().queue_free()
+"
 
 [node name="Hitbox" type="Area2D"]
 collision_layer = 16
-script = ExtResource("1_3p4o3")
+script = SubResource("GDScript_wth5w")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

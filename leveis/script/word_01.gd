@@ -14,6 +14,10 @@ func _ready() -> void:
 	Globals.player_start_position = player_start_position
 	Globals.player = player
 	Globals.player.follow_camera(camera)
+	Globals.coins = 0
+	Globals.score = 0 
+	Globals.player_life = 3
+	
 	
 	var pause_menu = pause_menu_scene.instantiate()
 	pause_menu.restart_pressed.connect(reload_game)
@@ -24,9 +28,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if camera.position.y >= camera_y_limit:
 		camera.position.y = camera_y_limit
-	#else:
-		#camera.position.x >= camera_x_limit
-		#camera.position.x = camera_x_limit
 
 func reload_game():
 	await get_tree().create_timer(1.0).timeout

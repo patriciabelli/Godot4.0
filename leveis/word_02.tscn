@@ -245,7 +245,25 @@ position = Vector2(1664, 183)
 position = Vector2(1704, 183)
 
 [node name="Coin17" parent="Coins" instance=ExtResource("7_t803v")]
+position = Vector2(1896, 237)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("7_t803v")]
+position = Vector2(1896, 207)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("7_t803v")]
+position = Vector2(1896, 175)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("7_t803v")]
+position = Vector2(1864, 207)
+
+[node name="Coin25" parent="Coins" instance=ExtResource("7_t803v")]
 position = Vector2(1824, 183)
+
+[node name="Coin26" parent="Coins" instance=ExtResource("7_t803v")]
+position = Vector2(1896, 143)
+
+[node name="Coin27" parent="Coins" instance=ExtResource("7_t803v")]
+position = Vector2(1928, 207)
 
 [node name="Coin21" parent="Coins" instance=ExtResource("7_t803v")]
 position = Vector2(1744, 183)
