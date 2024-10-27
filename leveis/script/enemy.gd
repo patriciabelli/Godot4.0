@@ -49,6 +49,6 @@ func kill_and_score() -> void:
  
 func spawn_new_enemy():
 	var instance_scene = spawn_instance.instantiate()
-	get_tree().get_root().call_deferred("add_child", instance_scene)
+	get_parent().call_deferred("add_child", instance_scene)
 	instance_scene.global_position = spawn_instance_position.global_position
 	

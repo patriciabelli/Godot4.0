@@ -15,14 +15,14 @@ extends CanvasLayer
 signal restart_pressed
 
 func _ready() -> void:
-	Globals.player.player_has_died.connect(game_over)
+	#Globals.player.player_has_died.connect(game_over)
 	menu.visible = false
-
-func game_over():
-	menu.visible = true
-	menu_game_over.visible = true
-	moedas_label.text = str(Globals.coins)
-	restart_btn.grab_focus()
+#
+#func game_over():
+	#menu.visible = true
+	#menu_game_over.visible = true
+	#moedas_label.text = str(Globals.coins)
+	#restart_btn.grab_focus()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

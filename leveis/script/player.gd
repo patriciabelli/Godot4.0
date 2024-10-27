@@ -8,12 +8,13 @@ const JUMP_FORCE = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") 
 var is_jumping := false
 var just_hit_enemy := false
-var game_over := false
+var game_over := false 
 
 var knockback_vector := Vector2.ZERO
 var direction
-
 var is_hurted = false
+var knockback_tween: Tween
+
 
 @onready var animation := $Anim as AnimatedSprite2D
 @onready var remote_transform := $Remote as RemoteTransform2D
@@ -24,6 +25,9 @@ var is_hurted = false
 @onready var audio_stream_player:= $AudioStreamPlayer as AudioStreamPlayer
 
 signal player_has_died()
+
+func _ready() -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -90,9 +94,8 @@ func take_damage (knocback_force := Vector2.ZERO, duration := 0.25):
 	if Globals.player_life > 0:
 		Globals.player_life -= 1
 	else:
-		get_tree().paused = true
 		emit_signal("player_has_died")
-		queue_free()
+		self.queue_free()
 	
 	is_hurted = true
 	
@@ -101,8 +104,8 @@ func take_damage (knocback_force := Vector2.ZERO, duration := 0.25):
 	if knocback_force != Vector2.ZERO:
 		knockback_vector = knocback_force
 	
-	var knockback_tween := get_tree().create_tween()
-	knockback_tween.parallel().tween_property(self, "knockback_vector", Vector2.ZERO,duration).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	knockback_tween = create_tween()
+	knockback_tween.parallel().tween_property(self, "knockback_vector", Vector2.ZERO,duration)
 	animation.modulate = Color(1, 0, 0, 1)
 	knockback_tween.parallel().tween_property(animation, "modulate", Color(1, 1, 1, 1), duration)
 	
@@ -143,7 +146,6 @@ func _on_head_collider_body_entered(body: Node2D) -> void:
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.name == "WorldBoundary":
-		get_tree().paused = true
 		player_has_died.emit()
 		queue_free()
 

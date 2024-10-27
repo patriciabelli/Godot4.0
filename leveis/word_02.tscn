@@ -1,7 +1,6 @@
-[gd_scene load_steps=46 format=3 uid="uid://b7fuyrlxqljfp"]
+[gd_scene load_steps=45 format=3 uid="uid://b7fuyrlxqljfp"]
 
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_hci57"]
-[ext_resource type="PackedScene" uid="uid://b7p5xpi24l601" path="res://leveis/pefabs/pause_menu.tscn" id="2_8m5nm"]
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="3_l602j"]
 [ext_resource type="Texture2D" uid="uid://diopw7pkflflw" path="res://assets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="4_5runq"]
 [ext_resource type="Texture2D" uid="uid://ntkh8g0d4vku" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Lava_frames (16 x 32).png" id="5_uixck"]
@@ -180,7 +179,6 @@ size = Vector2(32, 29.5)
 [node name="Word-02" type="Node2D"]
 position = Vector2(0, -7)
 script = ExtResource("1_hci57")
-pause_menu_scene = ExtResource("2_8m5nm")
 
 [node name="level" type="TileMap" parent="."]
 light_mask = 2

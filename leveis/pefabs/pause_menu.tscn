@@ -120,5 +120,4 @@ stretch_mode = 0
 
 [connection signal="pressed" from="Menu/Menu_pause/Resume_btn" to="." method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="Menu/Menu_pause/Quit_tbn" to="." method="_on_quit_tbn_pressed"]
-[connection signal="pressed" from="Menu/Menu_game_over/Restart_btn" to="." method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="Pause_play" to="." method="_on_pause_play_pressed"]
