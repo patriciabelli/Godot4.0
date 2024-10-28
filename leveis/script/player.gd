@@ -96,6 +96,7 @@ func take_damage (knocback_force := Vector2.ZERO, duration := 0.25):
 	else:
 		emit_signal("player_has_died")
 		self.queue_free()
+		Globals.on_restart.emit()
 	
 	is_hurted = true
 	
@@ -148,6 +149,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.name == "WorldBoundary":
 		player_has_died.emit()
 		queue_free()
+		Globals.on_restart.emit()
 
 func play_destroy_sfx():
 	var sound_sfx = destroy_sfx.instantiate()

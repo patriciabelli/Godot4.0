@@ -1,7 +1,6 @@
 extends Node2D
 
 
-
 @onready var player := $Player as CharacterBody2D
 @onready var player_scene = preload("res://actors/player.tscn")
 @onready var camera := $Camera as Camera2D
@@ -12,6 +11,7 @@ extends Node2D
 @onready var transition: CanvasLayer = $Transition
 @onready var controls: CanvasLayer = $Controls
 @onready var pause_menu: CanvasLayer = $Pause_menu
+
 
 const camera_y_limit = 318
 const camera_x_limit = -1000

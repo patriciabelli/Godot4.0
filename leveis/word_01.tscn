@@ -183,6 +183,7 @@ size = Vector2(32, 29.5)
 [node name="Word-01" type="Node2D"]
 position = Vector2(0, -6)
 script = ExtResource("1_7kmjo")
+metadata/_edit_horizontal_guides_ = [-48.0]
 
 [node name="level" type="TileMap" parent="."]
 light_mask = 2
@@ -366,16 +367,6 @@ next_level = "res://leveis/word_02.tscn"
 [node name="Player" parent="." instance=ExtResource("3_0656x")]
 position = Vector2(224, 169)
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2(8, -31)
-zoom = Vector2(2, 2)
-limit_left = 0
-limit_top = 0
-drag_horizontal_enabled = true
-drag_left_margin = 0.5
-drag_right_margin = 0.5
-editor_draw_drag_margin = true
-
 [node name="BG" type="ParallaxBackground" parent="."]
 
 [node name="5" type="ParallaxLayer" parent="BG"]
@@ -507,7 +498,7 @@ position = Vector2(1160, 272)
 position = Vector2(1016, 392)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary"]
+[node name="Boundary" type="CollisionShape2D" parent="WorldBoundary"]
 position = Vector2(0, 6)
 shape = SubResource("WorldBoundaryShape2D_p3wo7")
 
@@ -528,10 +519,22 @@ autoplay = true
 position = Vector2(224, 254)
 
 [node name="Pause_menu" parent="." instance=ExtResource("29_bgd37")]
+visible = false
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(8, -31)
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+drag_horizontal_enabled = true
+drag_left_margin = 0.5
+drag_right_margin = 0.5
+editor_draw_drag_margin = true
 
 [node name="GameOver" parent="." instance=ExtResource("3_da31d")]
 visible = false
+offset_right = -143.0
+offset_bottom = 180.0
 
-[connection signal="child_entered_tree" from="WorldBoundary/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
+[connection signal="child_entered_tree" from="WorldBoundary/Boundary" to="." method="_on_collision_shape_2d_child_entered_tree"]
 [connection signal="restart_pressed" from="Pause_menu" to="." method="_on_pause_menu_restart_pressed"]
-[connection signal="on_restart" from="GameOver" to="." method="_on_game_over_on_restart"]
