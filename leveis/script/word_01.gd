@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @onready var player := $Player as CharacterBody2D
 @onready var player_scene = preload("res://actors/player.tscn")
 @onready var camera := $Camera as Camera2D
@@ -47,11 +46,11 @@ func on_game_over():
 	if (find_child('Player')):
 		find_child('Player').queue_free()
 		
-	game_over.visible = true
+	game_over.visible = true 
 	hud.visible = false
 	transition.visible = false
 	controls.visible = false
-	pause_menu.visible = false
+	#pause_menu.visible = false
 	
 	
 

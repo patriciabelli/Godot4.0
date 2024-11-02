@@ -14,7 +14,7 @@ func _on_body_entered(body: Node2D) -> void:
 		print(\"toca\")
 		player.funcfunc()
 		
-		body.velocity.y = body.JUMP_FORCE
+		body.velocity.y = body.jump_velocity
 
 
 func _on_audio_stream_player_finished() -> void:

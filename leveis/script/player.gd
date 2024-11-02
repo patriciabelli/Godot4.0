@@ -3,9 +3,8 @@ extends CharacterBody2D
 class_name PlayerClass
 
 const SPEED = 200.0
-const JUMP_FORCE = -400.0
-
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") 
+const AIR_FRICTION := 0.5
+ 
 var is_jumping := false
 var just_hit_enemy := false
 var game_over := false 
@@ -14,6 +13,14 @@ var knockback_vector := Vector2.ZERO
 var direction
 var is_hurted = false
 var knockback_tween: Tween
+
+#handle jump and gravity
+@export var jump_height := 64
+@export var max_time_to_peak := 0.5
+
+var jump_velocity
+var gravity
+var fall_gravity
 
 
 @onready var animation := $Anim as AnimatedSprite2D
@@ -27,26 +34,33 @@ var knockback_tween: Tween
 signal player_has_died()
 
 func _ready() -> void:
-	pass
+	jump_velocity = (jump_height * 2) / max_time_to_peak
+	gravity = (jump_height * 2) / (max_time_to_peak * max_time_to_peak)
+	fall_gravity = gravity * 2
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		#velocity.y += gravity * delta
+		velocity.x = 0
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_FORCE
+		velocity.y = -jump_velocity
 		is_jumping = true
 		jump_sfx.play()
 	elif is_on_floor():
 		is_jumping = false
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+		
+	if velocity.y > 0 or not Input.is_action_pressed("ui_accept"):
+		velocity.y += fall_gravity * delta
+	else:
+		velocity.y += gravity * delta
+		
 	direction = Input.get_axis("ui_left", "ui_right")
 	
 	if direction != 0:
-		velocity.x = direction * SPEED
+		velocity.x = lerp(velocity.x,direction * SPEED, AIR_FRICTION)
 		animation.scale.x = direction
 		if !is_jumping and is_on_floor() and !just_hit_enemy: #is_not jumping
 			if !is_hurted:
@@ -149,7 +163,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.name == "WorldBoundary":
 		player_has_died.emit()
 		queue_free()
-		Globals.on_restart.emit()
+		
 
 func play_destroy_sfx():
 	var sound_sfx = destroy_sfx.instantiate()
