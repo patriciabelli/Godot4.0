@@ -91,7 +91,6 @@ func _physics_process(delta: float) -> void:
 			collision.get_collider().has_collided_with(collision, self)
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	
 	if ray_right.is_colliding():
 		take_damage(Vector2(-200, -200))
 	elif ray_left.is_colliding():
@@ -140,6 +139,7 @@ func _set_state():
 		
 func funcfunc():
 	just_hit_enemy = true
+	take_damage(Vector2(200, -250))
 	animation.play("jump")
 	
 
