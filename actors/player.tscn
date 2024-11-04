@@ -94,7 +94,7 @@ script = ExtResource("1_edhtc")
 [node name="Anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_neyu7")
-animation = &"hurt"
+animation = &"run"
 autoplay = "idie"
 
 [node name="Collision" type="CollisionShape2D" parent="."]

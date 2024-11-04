@@ -187,7 +187,7 @@ height = 9.9974
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_8d4s8")
 
 [node name="Texture" type="Sprite2D" parent="."]

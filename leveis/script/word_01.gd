@@ -45,7 +45,7 @@ func reload_game():
 func on_game_over():
 	if (find_child('Player')):
 		find_child('Player').queue_free()
-		
+	game_over.position = camera.position
 	game_over.visible = true 
 	hud.visible = false
 	transition.visible = false

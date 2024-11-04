@@ -506,7 +506,7 @@ shape = SubResource("WorldBoundaryShape2D_p3wo7")
 position = Vector2(144, 99)
 
 [node name="Base_patrol2" parent="." instance=ExtResource("9_5qcw1")]
-position = Vector2(0, -1)
+position = Vector2(864, 258)
 
 [node name="Transition" parent="." instance=ExtResource("34_kdgu5")]
 
@@ -533,8 +533,6 @@ editor_draw_drag_margin = true
 
 [node name="GameOver" parent="." instance=ExtResource("3_da31d")]
 visible = false
-offset_right = -143.0
-offset_bottom = 180.0
 
 [connection signal="child_entered_tree" from="WorldBoundary/Boundary" to="." method="_on_collision_shape_2d_child_entered_tree"]
 [connection signal="restart_pressed" from="Pause_menu" to="." method="_on_pause_menu_restart_pressed"]
