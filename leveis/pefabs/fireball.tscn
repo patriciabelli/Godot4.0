@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bnkvyuooc658e"]
 
+[ext_resource type="Script" path="res://leveis/script/fireball.gd" id="1_1tinl"]
 [ext_resource type="Texture2D" uid="uid://xdifbkat4v03" path="res://assets/Sprite Pack 2/4 - Percy/Fireball_Projectile (16 x 16).png" id="1_26gc6"]
-[ext_resource type="Script" path="res://leveis/script/collision.gd" id="2_gwifi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nswl3"]
 atlas = ExtResource("1_26gc6")
@@ -38,14 +38,15 @@ height = 18.0
 
 [node name="Fireball" type="CharacterBody2D"]
 position = Vector2(0, -2)
+script = ExtResource("1_1tinl")
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_g0d6b")
 autoplay = "default"
 frame_progress = 0.672464
+flip_h = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_wbrio")
-script = ExtResource("2_gwifi")

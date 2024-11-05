@@ -99,6 +99,9 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		if Globals.player_life <0:
 			queue_free()
 
+	if body.is_in_group("fireball"):
+		body.queue_free()
+		
 func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_transform.remote_path = camera_path

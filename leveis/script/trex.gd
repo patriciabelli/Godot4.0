@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const FIREBALL = preload("res://leveis/pefabs/fireball.tscn")
+
 var move_spered := 50.0
 var direction := 1
 var health_points := 3
@@ -21,6 +23,9 @@ func _physics_process(delta: float) -> void:
 	if not ground_detector.is_colliding():
 		flip_enemy()
 		
+		if player_detector.is_colliding():
+			spawn_fireball()
+		
 	velocity.x = move_spered * direction
 	
 	move_and_slide()
@@ -30,3 +35,6 @@ func flip_enemy():
 	sprite.scale.x *= -1
 	player_detector.scale.x *= -1
 		
+func spawn_fireball():
+	var new_fireball = FIREBALL.instantiate()
+	add_child(new_fireball)
