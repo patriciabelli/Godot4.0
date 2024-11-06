@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bwprqpwobc8x7"]
+[gd_scene load_steps=50 format=3 uid="uid://bwprqpwobc8x7"]
 
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_3jimi"]
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_7kmjo"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://leveis/script/controls.gd" id="17_w3b8j"]
 [ext_resource type="Texture2D" uid="uid://d1gbktfdeq1gg" path="res://assets/EXTRA/ui_buttons_arrow_up_NORMAL.png" id="18_ucu1e"]
 [ext_resource type="Texture2D" uid="uid://0vgwlvmym2gf" path="res://assets/EXTRA/ui_buttons_arrow_up_PRESSED.png" id="19_soyqo"]
+[ext_resource type="PackedScene" uid="uid://d0ws21rdu3sno" path="res://actors/trex.tscn" id="19_x1bg8"]
 [ext_resource type="PackedScene" uid="uid://ctrt1rsojdqqk" path="res://leveis/pefabs/break_box.tscn" id="20_bq1ih"]
 [ext_resource type="PackedScene" uid="uid://biebmqvrxjjsg" path="res://leveis/pefabs/falling_platform.tscn" id="21_narru"]
 [ext_resource type="Script" path="res://leveis/script/warning_sign.gd" id="22_rxh2c"]
@@ -360,12 +361,12 @@ position = Vector2(464, 161)
 position = Vector2(576, 104)
 hitpoints = 2
 
+[node name="Player" parent="." instance=ExtResource("3_0656x")]
+position = Vector2(1192, 228)
+
 [node name="Goal" parent="." instance=ExtResource("7_ceuj1")]
 position = Vector2(1480, 239)
 next_level = "res://leveis/word_02.tscn"
-
-[node name="Player" parent="." instance=ExtResource("3_0656x")]
-position = Vector2(224, 169)
 
 [node name="BG" type="ParallaxBackground" parent="."]
 
@@ -434,7 +435,10 @@ up_direction = Vector2(0, 1)
 position = Vector2(568, 273)
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource("12_i51g1")]
-position = Vector2(1264, 272)
+position = Vector2(1400, 264)
+
+[node name="Trex" parent="." instance=ExtResource("19_x1bg8")]
+position = Vector2(1248, 273)
 
 [node name="Controls" type="CanvasLayer" parent="."]
 script = ExtResource("17_w3b8j")

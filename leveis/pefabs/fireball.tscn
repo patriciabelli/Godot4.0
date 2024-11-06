@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://leveis/script/fireball.gd" id="1_1tinl"]
 [ext_resource type="Texture2D" uid="uid://xdifbkat4v03" path="res://assets/Sprite Pack 2/4 - Percy/Fireball_Projectile (16 x 16).png" id="1_26gc6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nswl3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj6ne"]
 atlas = ExtResource("1_26gc6")
 region = Rect2(0, 0, 16, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xb2am"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecsov"]
 atlas = ExtResource("1_26gc6")
 region = Rect2(16, 0, 16, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yh0ab"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_laxin"]
 atlas = ExtResource("1_26gc6")
 region = Rect2(32, 0, 16, 12)
 
@@ -19,13 +19,13 @@ region = Rect2(32, 0, 16, 12)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nswl3")
+"texture": SubResource("AtlasTexture_hj6ne")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xb2am")
+"texture": SubResource("AtlasTexture_ecsov")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yh0ab")
+"texture": SubResource("AtlasTexture_laxin")
 }],
 "loop": true,
 "name": &"default",
@@ -36,17 +36,19 @@ animations = [{
 radius = 6.0
 height = 18.0
 
-[node name="Fireball" type="CharacterBody2D"]
+[node name="Fireball" type="CharacterBody2D" groups=["fireball"]]
 position = Vector2(0, -2)
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_1tinl")
 
 [node name="Anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_g0d6b")
 autoplay = "default"
-frame_progress = 0.672464
-flip_h = true
+frame_progress = 0.238033
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+visible = false
+position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_wbrio")

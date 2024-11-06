@@ -38,3 +38,4 @@ func flip_enemy():
 func spawn_fireball():
 	var new_fireball = FIREBALL.instantiate()
 	add_child(new_fireball)
+ 
