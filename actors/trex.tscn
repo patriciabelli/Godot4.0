@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0ws21rdu3sno"]
+[gd_scene load_steps=15 format=4 uid="uid://d0ws21rdu3sno"]
 
 [ext_resource type="Texture2D" uid="uid://5cmdm6ils8yp" path="res://assets/Sprite Pack 2/4 - Percy/Running (32 x 32).png" id="1_1fc6y"]
 [ext_resource type="Script" path="res://leveis/script/trex.gd" id="1_ybcka"]
 [ext_resource type="Texture2D" uid="uid://coppqbwdmcixf" path="res://assets/Sprite Pack 2/4 - Percy/Shooting_Fireball (32 x 32).png" id="2_g3vw7"]
 [ext_resource type="Texture2D" uid="uid://bk3wxvmngxbbp" path="res://assets/Sprite Pack 2/4 - Percy/Hurt (32 x 32).png" id="3_6r78p"]
+[ext_resource type="PackedScene" uid="uid://uw1ry6veemqf" path="res://leveis/pefabs/hitbox.tscn" id="5_ss4cn"]
 
 [sub_resource type="Animation" id="Animation_dku7a"]
 resource_name = "Hurt"
@@ -164,6 +165,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.26667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_fireball"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ro8fx"]
 _data = {
@@ -176,6 +191,30 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ha3wt"]
 size = Vector2(14, 19)
 
+[sub_resource type="GDScript" id="GDScript_qb0lm"]
+script/source = "extends Area2D
+
+@onready var audio_stream_player: AudioStreamPlayer = $\"../AudioStreamPlayer\"
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\":
+		var player = body as PlayerClass
+		
+		audio_stream_player.play()
+			
+		print(\"toca\")
+		player.funcfunc()
+		
+		body.velocity.y = body.jump_velocity
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0b2ns"]
+radius = 7.27886
+height = 28.0383
+
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_ynnba"]
+data = PackedByteArray("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")
+
 [node name="Trex" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
@@ -186,18 +225,25 @@ position = Vector2(0, -16)
 texture = ExtResource("1_1fc6y")
 hframes = 6
 
+[node name="Hurt_sprite" type="Sprite2D" parent="Sprite"]
+visible = false
+self_modulate = Color(1, 0.380392, 0.305882, 1)
+texture = ExtResource("3_6r78p")
+
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ro8fx")
 }
 autoplay = "running"
-speed_scale = 5.0
+speed_scale = 4.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, -9.5)
 shape = SubResource("RectangleShape2D_ha3wt")
 
 [node name="Fireball_spawn_point" type="Marker2D" parent="."]
+position = Vector2(7, -12)
 
 [node name="Ground_detector" type="RayCast2D" parent="."]
 target_position = Vector2(0, 8)
@@ -206,3 +252,20 @@ collision_mask = 2
 [node name="Player_detector" type="RayCast2D" parent="."]
 position = Vector2(0, -8)
 target_position = Vector2(50, 0)
+
+[node name="Hitbox" parent="." instance=ExtResource("5_ss4cn")]
+position = Vector2(0, -4)
+script = SubResource("GDScript_qb0lm")
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(2.98024e-08, -11)
+rotation = -1.54799
+scale = Vector2(0.961439, 1.032)
+shape = SubResource("CapsuleShape2D_0b2ns")
+debug_color = Color(0.872322, 0.306046, 0.436522, 0.42)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMP3_ynnba")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="Hitbox" method="_on_audio_stream_player_finished"]

@@ -17,6 +17,7 @@ signal restart_pressed
 func _ready() -> void:
 	#Globals.player.player_has_died.connect(game_over)
 	menu.visible = false
+	
 #
 #func game_over():
 	#menu.visible = true
@@ -41,7 +42,7 @@ func _on_quit_tbn_pressed() -> void:
 
 
 func _on_pause_play_pressed() -> void:
-	pause_play.visible = false
+	pause_play.visible = true
 	menu.visible = true
 	get_tree().paused = true
 	moedas_label.text = str(Globals.coins)
