@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmxxbjdtbe5jy"]
+
+[ext_resource type="Script" path="res://leveis/script/tank_boy.gd" id="1_tseca"]
+[ext_resource type="Texture2D" uid="uid://rp4p1778luuh" path="res://assets/Sprite Pack 2/8 - Comrade Cheese Puff/Tank_Movement (32 x 32).png" id="1_ty4lf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wgo6"]
+size = Vector2(27, 19)
+
+[sub_resource type="Animation" id="Animation_5ytg5"]
+resource_name = "moving"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_knbaj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8pm46"]
+_data = {
+"RESET": SubResource("Animation_knbaj"),
+"moving": SubResource("Animation_5ytg5")
+}
+
+[node name="TankBoy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_tseca")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -9.5)
+shape = SubResource("RectangleShape2D_0wgo6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_ty4lf")
+hframes = 11
+
+[node name="Missile_point" type="Marker2D" parent="Sprite2D"]
+position = Vector2(0, 6)
+
+[node name="Bomb_point" type="Marker2D" parent="Sprite2D"]
+position = Vector2(0, -1)
+
+[node name="Anim_Player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8pm46")
+}
+
+[node name="Anim_Tree" type="AnimationTree" parent="."]
+
+[node name="Comb_coodown" type="Timer" parent="."]
+
+[node name="Missile_coodown" type="Timer" parent="."]
+
+[node name="Wall_detector" type="RayCast2D" parent="."]
+position = Vector2(0, -12)
+target_position = Vector2(-16, 0)
+collision_mask = 2

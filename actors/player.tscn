@@ -81,13 +81,13 @@ animations = [{
 size = Vector2(12, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prjju"]
-size = Vector2(16, 12.5)
+size = Vector2(16, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rpp3y"]
 size = Vector2(16, 5)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(0, -3)
+position = Vector2(0, -9)
 collision_mask = 94
 script = ExtResource("1_edhtc")
 
@@ -98,7 +98,7 @@ animation = &"run"
 autoplay = "idie"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_201jg")
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -106,8 +106,7 @@ collision_layer = 6
 collision_mask = 6
 
 [node name="Collision" type="CollisionShape2D" parent="HurtBox"]
-visible = false
-position = Vector2(0, -0.75)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_prjju")
 debug_color = Color(0.91169, 0.248604, 0.412137, 0.42)
 
@@ -128,6 +127,7 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="Head_collision" type="CollisionShape2D" parent="Head_collider"]
+visible = false
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_rpp3y")
 

@@ -10,7 +10,7 @@ signal on_restart
 #setters
 var coins := 0
 var score := 0
-var player_life := 3
+var player_life := 5
 var player = null
 var player_start_position = null
 var current_checkpoint = null

@@ -4,12 +4,15 @@ class_name PlayerClass
 
 const SPEED = 200.0
 const AIR_FRICTION := 0.5
+
+const COIN_SCENE :=  preload("res://leveis/pefabs/coin_rigid.tscn")
  
 var is_jumping := false
 var just_hit_enemy := false
 var game_over := false 
 
 var knockback_vector := Vector2.ZERO
+var knockback_power := 20
 var direction
 var is_hurted = false
 var knockback_tween: Tween
@@ -30,6 +33,7 @@ var fall_gravity
 @onready var jump_sfx: AudioStreamPlayer = $Jump_sfx as AudioStreamPlayer
 @onready var destroy_sfx = preload("res://Sounds/destroy_sfx.tscn")
 @onready var audio_stream_player:= $AudioStreamPlayer as AudioStreamPlayer
+@onready var collision: CollisionShape2D = $Collision
 
 signal player_has_died()
 
@@ -91,6 +95,10 @@ func _physics_process(delta: float) -> void:
 			collision.get_collider().has_collided_with(collision, self)
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
+	#var knocback = Vector2((global_position.x - body.global_position.x) * knockback_power, -100)
+	#print(knocback)
+	#take_damage(knocback)
+	
 	if ray_right.is_colliding():
 		take_damage(Vector2(-200, -200))
 	elif ray_left.is_colliding():
@@ -128,7 +136,8 @@ func take_damage (knocback_force := Vector2.ZERO, duration := 0.25):
 	
 	animation.play("hurt")
 		
-		
+	lose_coins()
+	
 func _set_state():
 	var state = "idie"
 		
@@ -174,4 +183,17 @@ func play_destroy_sfx():
 	sound_sfx.play()
 	await  sound_sfx.finished
 	sound_sfx.queue_free()
+	
+func lose_coins():
+	var lost_coins :int = min(Globals.coins, 5)
+	collision.set_deferred("disabled", true)
+	Globals.coins -= lost_coins
+	for i in lost_coins:
+		var coin = COIN_SCENE.instantiate()
+		#get_parent().add_child(coin)
+		get_parent().call_deferred("add_child", coin)
+		coin.global_position = global_position
+		coin.apply_central_impulse(Vector2(randi_range(-100, 100), -250))
+	await get_tree().create_timer(0.3).timeout
+	collision.set_deferred("disabled", false)
 	

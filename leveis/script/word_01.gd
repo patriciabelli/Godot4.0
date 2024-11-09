@@ -13,7 +13,6 @@ extends Node2D
 
 
 const camera_y_limit = 318
-const camera_x_limit = -1000
 
 func _ready() -> void:
 	Globals.player_start_position = player_start_position

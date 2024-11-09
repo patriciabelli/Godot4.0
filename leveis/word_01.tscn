@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bwprqpwobc8x7"]
+[gd_scene load_steps=49 format=3 uid="uid://bwprqpwobc8x7"]
 
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_3jimi"]
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_7kmjo"]
@@ -25,7 +25,6 @@
 [ext_resource type="Script" path="res://leveis/script/controls.gd" id="17_w3b8j"]
 [ext_resource type="Texture2D" uid="uid://d1gbktfdeq1gg" path="res://assets/EXTRA/ui_buttons_arrow_up_NORMAL.png" id="18_ucu1e"]
 [ext_resource type="Texture2D" uid="uid://0vgwlvmym2gf" path="res://assets/EXTRA/ui_buttons_arrow_up_PRESSED.png" id="19_soyqo"]
-[ext_resource type="PackedScene" uid="uid://d0ws21rdu3sno" path="res://actors/trex.tscn" id="19_x1bg8"]
 [ext_resource type="PackedScene" uid="uid://ctrt1rsojdqqk" path="res://leveis/pefabs/break_box.tscn" id="20_bq1ih"]
 [ext_resource type="PackedScene" uid="uid://biebmqvrxjjsg" path="res://leveis/pefabs/falling_platform.tscn" id="21_narru"]
 [ext_resource type="Script" path="res://leveis/script/warning_sign.gd" id="22_rxh2c"]
@@ -36,7 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://b7p5xpi24l601" path="res://leveis/pefabs/pause_menu.tscn" id="29_bgd37"]
 [ext_resource type="PackedScene" uid="uid://bgju004i0pbyx" path="res://actors/cherry.tscn" id="32_og6vl"]
 [ext_resource type="PackedScene" uid="uid://7xg6833a60qo" path="res://leveis/pefabs/transition.tscn" id="34_kdgu5"]
-[ext_resource type="AudioStream" uid="uid://db5uyw72biy37" path="res://Sounds/bg_music.wav" id="35_7dor0"]
+[ext_resource type="AudioStream" uid="uid://b2sq708c54sv8" path="res://Sounds/bg_music.mp3" id="35_8v1c5"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0gxwx"]
 tile_data = PackedInt32Array(0, 65537, 1)
@@ -362,7 +361,7 @@ position = Vector2(576, 104)
 hitpoints = 2
 
 [node name="Player" parent="." instance=ExtResource("3_0656x")]
-position = Vector2(1448, 236)
+position = Vector2(224, 190)
 
 [node name="Goal" parent="." instance=ExtResource("7_ceuj1")]
 position = Vector2(1480, 239)
@@ -433,10 +432,6 @@ up_direction = Vector2(0, 1)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("12_i51g1")]
 position = Vector2(568, 273)
-
-[node name="Trex" parent="." node_paths=PackedStringArray("target") instance=ExtResource("19_x1bg8")]
-position = Vector2(1248, 273)
-target = NodePath("../Player")
 
 [node name="Controls" type="CanvasLayer" parent="."]
 script = ExtResource("17_w3b8j")
@@ -513,9 +508,10 @@ position = Vector2(864, 258)
 [node name="Transition" parent="." instance=ExtResource("34_kdgu5")]
 
 [node name="Bg_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("35_7dor0")
+stream = ExtResource("35_8v1c5")
 volume_db = -10.0
 autoplay = true
+parameters/looping = true
 
 [node name="Player_start_position" type="Marker2D" parent="."]
 position = Vector2(224, 254)
@@ -524,9 +520,8 @@ position = Vector2(224, 254)
 visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(8, -31)
+position = Vector2(0, -31)
 zoom = Vector2(2, 2)
-limit_left = 0
 limit_top = 0
 drag_horizontal_enabled = true
 drag_left_margin = 0.5
@@ -535,6 +530,8 @@ editor_draw_drag_margin = true
 
 [node name="GameOver" parent="." instance=ExtResource("3_da31d")]
 visible = false
+offset_right = 310.0
+offset_bottom = 280.0
 
 [connection signal="child_entered_tree" from="WorldBoundary/Boundary" to="." method="_on_collision_shape_2d_child_entered_tree"]
 [connection signal="restart_pressed" from="Pause_menu" to="." method="_on_pause_menu_restart_pressed"]

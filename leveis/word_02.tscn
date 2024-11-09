@@ -29,8 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://cc05nog5ukuf0" path="res://assets/Mini FX, Items & UI/Mini UI/Speech_Emotes (16 x 16).png" id="28_yeft7"]
 [ext_resource type="PackedScene" uid="uid://djh1dj6dt0e6m" path="res://leveis/pefabs/hud.tscn" id="30_0d0ga"]
 [ext_resource type="PackedScene" uid="uid://dq6qkpmueow6d" path="res://actors/base_patrol.tscn" id="31_68c4o"]
+[ext_resource type="AudioStream" uid="uid://b2sq708c54sv8" path="res://Sounds/bg_music.mp3" id="31_ythoe"]
 [ext_resource type="PackedScene" uid="uid://bs3vnlmhvcppa" path="res://leveis/pefabs/checkpoint.tscn" id="32_u1q5b"]
-[ext_resource type="AudioStream" uid="uid://db5uyw72biy37" path="res://Sounds/bg_music.wav" id="33_67cy5"]
 [ext_resource type="PackedScene" uid="uid://dom3g13hmdwao" path="res://scenes/game_over.tscn" id="33_lcm4t"]
 [ext_resource type="PackedScene" uid="uid://7xg6833a60qo" path="res://leveis/pefabs/transition.tscn" id="34_k8coe"]
 
@@ -346,7 +346,7 @@ position = Vector2(264, 191)
 [node name="Break-box2" parent="Break-box" instance=ExtResource("9_2ve22")]
 position = Vector2(904, 202)
 
-[node name="Goal2" parent="." instance=ExtResource("7_5a1hi")]
+[node name="Goal" parent="." instance=ExtResource("7_5a1hi")]
 position = Vector2(1840, 240)
 script = SubResource("GDScript_jbxcf")
 next_level = "res://leveis/word_03.tscn"
@@ -489,9 +489,10 @@ position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_vc34o")
 
 [node name="Bg_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("33_67cy5")
+stream = ExtResource("31_ythoe")
 volume_db = -10.0
 autoplay = true
+parameters/looping = true
 
 [node name="Checkpoint" parent="." instance=ExtResource("32_u1q5b")]
 position = Vector2(1272, 225)
