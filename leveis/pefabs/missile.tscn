@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://do6yhi3h8xk5n"]
+
+[ext_resource type="Script" path="res://leveis/script/missile.gd" id="1_r37o3"]
+[ext_resource type="Texture2D" uid="uid://d37jof3b1lpjy" path="res://assets/Sprite Pack 2/8 - Comrade Cheese Puff/Missile (16 x 8).png" id="1_xkycp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq68x"]
+size = Vector2(14, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xkl3"]
+size = Vector2(16, 4)
+
+[node name="Missile" type="AnimatableBody2D"]
+collision_layer = 8
+collision_mask = 3
+sync_to_physics = false
+script = ExtResource("1_r37o3")
+metadata/_edit_horizontal_guides_ = [-42.0]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nq68x")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_xkycp")
+
+[node name="Collision_detection" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="Collision" type="CollisionShape2D" parent="Collision_detection"]
+shape = SubResource("RectangleShape2D_4xkl3")
+
+[connection signal="body_entered" from="Collision_detection" to="." method="_on_collision_detection_body_entered"]

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 5000.0	
+const SPEED = 5000.0
 var direction = -1
 @onready var wall_detector: RayCast2D = $Wall_detector
 @onready var sprite_2d: Sprite2D = $Sprite2D

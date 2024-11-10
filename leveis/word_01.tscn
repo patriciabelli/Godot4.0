@@ -434,6 +434,7 @@ up_direction = Vector2(0, 1)
 position = Vector2(568, 273)
 
 [node name="Controls" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("17_w3b8j")
 
 [node name="Ui_left" type="TouchScreenButton" parent="Controls"]
@@ -483,6 +484,7 @@ shape = SubResource("RectangleShape2D_prnm1")
 position = Vector2(374, 271)
 
 [node name="HUD" parent="." instance=ExtResource("25_u6yat")]
+visible = false
 
 [node name="Base_patrol" type="Node2D" parent="."]
 
