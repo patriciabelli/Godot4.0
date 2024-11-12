@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://crbglad7k6tqg"]
+[gd_scene load_steps=40 format=3 uid="uid://crbglad7k6tqg"]
 
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_axk1x"]
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_pfole"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://ntkh8g0d4vku" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Lava_frames (16 x 32).png" id="4_e5ect"]
 [ext_resource type="Texture2D" uid="uid://bjp3prxfy85ol" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Water_frames (16 x 32).png" id="5_fvcdx"]
 [ext_resource type="PackedScene" uid="uid://b3i3p8r2ybinb" path="res://leveis/pefabs/coin.tscn" id="6_u4xl3"]
-[ext_resource type="PackedScene" uid="uid://do6yhi3h8xk5n" path="res://leveis/pefabs/missile.tscn" id="8_806p3"]
-[ext_resource type="PackedScene" uid="uid://ct5rxn4t57pu0" path="res://leveis/pefabs/bomb.tscn" id="8_fhtob"]
 [ext_resource type="PackedScene" uid="uid://c7mj0lnwo6bah" path="res://actors/player.tscn" id="9_d81pk"]
 [ext_resource type="Texture2D" uid="uid://bkk8susv5cxhn" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/5 - Sky_color.png" id="10_cfbqk"]
 [ext_resource type="Texture2D" uid="uid://c5e61agu5mk86" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/4 - Cloud_cover_2.png" id="11_fna5s"]
@@ -209,12 +207,6 @@ position = Vector2(1080, 271)
 
 [node name="Player" parent="." instance=ExtResource("9_d81pk")]
 position = Vector2(1323, 254)
-
-[node name="Missile" parent="." instance=ExtResource("8_806p3")]
-position = Vector2(1296, 237)
-
-[node name="Bomb" parent="." instance=ExtResource("8_fhtob")]
-position = Vector2(1368, 207)
 
 [node name="BG" type="ParallaxBackground" parent="."]
 

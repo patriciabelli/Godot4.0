@@ -172,10 +172,22 @@ func _on_head_collider_body_entered(body: Node2D) -> void:
 			body.create_coin()
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if area.name == "WorldBoundary":
-		player_has_died.emit()
-		queue_free()
+	if Globals.player_life > 0:
+		Globals.player_life -= 1
+		visible = false
+		set_physics_process(false)
 		
+		await  get_tree().create_timer(1.0).timeout
+		Globals.respawn_player()
+		visible = true
+		set_physics_process(true)
+	else:
+		visible = false
+		await  get_tree().create_timer(0.5).timeout
+		player_has_died.emit()
+	#if area.name == "WorldBoundary":
+		#player_has_died.emit()
+		#queue_free()
 
 func play_destroy_sfx():
 	var sound_sfx = destroy_sfx.instantiate()
