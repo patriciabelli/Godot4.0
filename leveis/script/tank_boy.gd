@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 const BOMB := preload("res://leveis/pefabs/bomb.tscn")
 const MISSILE := preload("res://leveis/pefabs/missile.tscn")
 const SPEED = 5000.0
@@ -12,12 +13,13 @@ var direction = -1
 @onready var anim_tree: AnimationTree = $Anim_Tree
 @onready var state_machine = anim_tree["parameters/playback"]
 
+
 var turn_count := 0
 var missile_count := 0
 var bomb_count := 0
 var can_launch_missile := true
 var can_launch_bomb := true
-var player_can_hit := false
+var player_hit := false
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -30,19 +32,20 @@ func _physics_process(delta: float) -> void:
 		
 	match state_machine.get_current_node():
 		"moving":
+			$Hurt_box/CollisionShape2D .set_deferred("disabled", true)
 			if direction == 1:
 				velocity.x = SPEED * delta
 				sprite_2d.flip_h = true
 			else:
 				velocity.x = -SPEED * delta
 				sprite_2d.flip_h = false
-		"time_missile":
+		"missile_attack":
 			velocity.x = 0 
 			await get_tree().create_timer(2.0).timeout
 			if can_launch_missile:
 				launch_missile()
 				can_launch_missile = false
-		"time_bomb":
+		"hide_bomb":
 			velocity.x = 0 
 			await get_tree().create_timer(1.0).timeout
 			if can_launch_bomb:
@@ -52,7 +55,8 @@ func _physics_process(delta: float) -> void:
 			can_launch_missile = false
 			can_launch_bomb = false
 			await get_tree().create_timer(1.0).timeout
-			player_can_hit = true
+			player_hit = false
+			$Hurt_box/CollisionShape2D.set_deferred("disabled", false)
 			
 	if turn_count <= 2:
 		anim_tree.set("parameters/conditions/can_move", true)
@@ -62,13 +66,12 @@ func _physics_process(delta: float) -> void:
 		missile_count = 0 
 	elif bomb_count >= 3:
 		anim_tree.set("parameters/conditions/is_vunerable", true)
-		bomb_count 
+		bomb_count = 0
 	else:
 		anim_tree.set("parameters/conditions/can_move", false)
 		anim_tree.set("parameters/conditions/is_vunerable",false)
 		anim_tree.set("parameters/conditions/time_bomb", false)
 		anim_tree.set("parameters/conditions/time_missile", true)
-		 
 		
 	move_and_slide()
 
@@ -76,7 +79,7 @@ func throw_bomb():
 	if bomb_count <= 3:
 		var bomb_instance = BOMB.instantiate()
 		add_sibling(bomb_instance)
-		bomb_instance.global_position = bomb_point.global_position
+		bomb_instance.global_position = bomb_point.global_position 
 		bomb_instance.apply_impulse(Vector2(randi_range(direction * 30, direction * 200 ), randi_range(-200, -400)))
 		$Bomb_coodown.start()
 		bomb_count += 1
@@ -99,10 +102,17 @@ func _on_missile_coodown_timeout() -> void:
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	set_physics_process(true)
+	
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	set_physics_process(true)
+	#if (body.name == "PlayerClass"):
+		#(body as PlayerClass).take_damage(Vector2(0, 20))
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	body.velocity = Vector2(50, -300)
+	player_hit = true
+	turn_count = 0
+	print("Player hit me")
+	

@@ -15,7 +15,7 @@ var player = null
 var player_start_position = null
 var current_checkpoint = null
 var is_checkpoint_active := false
-
+var bomb_instance = null
 
 func  respawn_player():
 	if is_checkpoint_active:
