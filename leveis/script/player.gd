@@ -198,7 +198,7 @@ func play_destroy_sfx():
 	
 func lose_coins():
 	var lost_coins :int = min(Globals.coins, 5)
-	collision.set_deferred("disabled", true)
+	set_collision_layer_value(2, true)
 	Globals.coins -= lost_coins
 	for i in lost_coins:
 		var coin = COIN_SCENE.instantiate()
@@ -207,5 +207,5 @@ func lose_coins():
 		coin.global_position = global_position
 		coin.apply_central_impulse(Vector2(randi_range(-100, 100), -250))
 	await get_tree().create_timer(0.3).timeout
-	collision.set_deferred("disabled", false)
+	set_collision_layer_value(2, false)
 	

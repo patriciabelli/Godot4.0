@@ -199,7 +199,7 @@ size = Vector2(27, 19)
 size = Vector2(20, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gmne"]
-size = Vector2(202, 16)
+size = Vector2(282, 16)
 
 [node name="TankBoy" type="CharacterBody2D"]
 collision_layer = 4

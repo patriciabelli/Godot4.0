@@ -270,7 +270,7 @@ scale = Vector2(-3.66153, 3.73918)
 [node name="Break-box" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("9_d81pk")]
-position = Vector2(981, 241)
+position = Vector2(803, 150)
 
 [node name="BG" type="ParallaxBackground" parent="."]
 
@@ -376,7 +376,6 @@ action = "ui_accept"
 visibility_mode = 1
 
 [node name="HUD" parent="." instance=ExtResource("25_upgn6")]
-visible = false
 
 [node name="Base_patrol" type="Node2D" parent="."]
 position = Vector2(-16, 7)

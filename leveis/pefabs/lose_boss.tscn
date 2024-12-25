@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqh23a7wdx34s"]
+
+[ext_resource type="Texture2D" uid="uid://cr16g7cirejs3" path="res://assets/Sprite Pack 2/8 - Comrade Cheese Puff/Running_Away (16 x 16).png" id="1_gp2vt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr2ml"]
+atlas = ExtResource("1_gp2vt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s53a"]
+atlas = ExtResource("1_gp2vt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7t0o3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr2ml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s53a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_5o5pl"]
+resource_name = "run_away"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1.1, 1.7, 1.9, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -27), Vector2(0, -2), Vector2(106, -2), Vector2(107, -47), Vector2(104, 0), Vector2(176, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6o2i5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3f7o"]
+_data = {
+"RESET": SubResource("Animation_6o2i5"),
+"run_away": SubResource("Animation_5o5pl")
+}
+
+[node name="Lose_boss" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_7t0o3")
+autoplay = "default"
+frame_progress = 0.504623
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i3f7o")
+}
