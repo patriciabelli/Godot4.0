@@ -1,7 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://bmxxbjdtbe5jy"]
+[gd_scene load_steps=30 format=3 uid="uid://bmxxbjdtbe5jy"]
 
 [ext_resource type="Script" path="res://leveis/script/tank_boy.gd" id="1_tseca"]
-[ext_resource type="Texture2D" uid="uid://rp4p1778luuh" path="res://assets/Sprite Pack 2/8 - Comrade Cheese Puff/Tank_Movement (32 x 32).png" id="1_ty4lf"]
+[ext_resource type="Texture2D" uid="uid://dcr01k4dc2lur" path="res://assets/Sprite Pack 2/8 - Comrade Cheese Puff/Tank_Defeated (32 x 32).png" id="2_q4u0e"]
 
 [sub_resource type="Animation" id="Animation_knbaj"]
 length = 0.001
@@ -115,9 +115,26 @@ tracks/0/keys = {
 "values": [10]
 }
 
+[sub_resource type="Animation" id="Animation_ds0sp"]
+resource_name = "death"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8pm46"]
 _data = {
 "RESET": SubResource("Animation_knbaj"),
+"death": SubResource("Animation_ds0sp"),
 "enter_scene": SubResource("Animation_5hlj2"),
 "hide_bomb": SubResource("Animation_jd5vo"),
 "missile_attack": SubResource("Animation_qdsjv"),
@@ -208,7 +225,7 @@ script = ExtResource("1_tseca")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
-texture = ExtResource("1_ty4lf")
+texture = ExtResource("2_q4u0e")
 hframes = 11
 
 [node name="Missile_point" type="Marker2D" parent="Sprite2D"]
