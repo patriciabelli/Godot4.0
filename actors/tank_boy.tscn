@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://bmxxbjdtbe5jy"]
+[gd_scene load_steps=32 format=3 uid="uid://bmxxbjdtbe5jy"]
 
 [ext_resource type="Script" path="res://leveis/script/tank_boy.gd" id="1_tseca"]
 [ext_resource type="Texture2D" uid="uid://dcr01k4dc2lur" path="res://assets/Sprite Pack 2/8 - Comrade Cheese Puff/Tank_Defeated (32 x 32).png" id="2_q4u0e"]
+[ext_resource type="PackedScene" uid="uid://cqh23a7wdx34s" path="res://leveis/pefabs/lose_boss.tscn" id="2_tcep7"]
 
 [sub_resource type="Animation" id="Animation_knbaj"]
 length = 0.001
@@ -16,6 +17,60 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ds0sp"]
+resource_name = "death"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"create_lose_boss"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_5hlj2"]
@@ -101,23 +156,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_usipe"]
 resource_name = "vunerable"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [10]
-}
-
-[sub_resource type="Animation" id="Animation_ds0sp"]
-resource_name = "death"
-length = 0.3
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -142,6 +181,9 @@ _data = {
 "show_reveal": SubResource("Animation_r112m"),
 "vunerable": SubResource("Animation_usipe")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y4n6a"]
+animation = &"death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8ij5"]
 animation = &"enter_scene"
@@ -194,6 +236,8 @@ advance_mode = 2
 advance_condition = &"can_move"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_103wg"]
+states/death/node = SubResource("AnimationNodeAnimation_y4n6a")
+states/death/position = Vector2(885.333, 173.91)
 states/enter_scene/node = SubResource("AnimationNodeAnimation_y8ij5")
 states/enter_scene/position = Vector2(308, 100.003)
 states/hide_bomb/node = SubResource("AnimationNodeAnimation_7by2k")
@@ -222,11 +266,12 @@ size = Vector2(282, 16)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_tseca")
+boss_intance = ExtResource("2_tcep7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
 texture = ExtResource("2_q4u0e")
-hframes = 11
+hframes = 12
 
 [node name="Missile_point" type="Marker2D" parent="Sprite2D"]
 unique_name_in_owner = true

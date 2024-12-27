@@ -416,5 +416,6 @@ parameters/looping = true
 
 [node name="TankBoy" parent="." instance=ExtResource("27_v7mvx")]
 position = Vector2(1832, 295)
+boss_intance = null
 
 [connection signal="child_entered_tree" from="WorldBoundary/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]

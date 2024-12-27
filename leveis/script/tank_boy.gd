@@ -20,6 +20,9 @@ var bomb_count := 0
 var can_launch_missile := true
 var can_launch_bomb := true
 var player_hit := false
+var boss_life := 1
+
+@export var boss_intance : PackedScene
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -72,7 +75,9 @@ func _physics_process(delta: float) -> void:
 		anim_tree.set("parameters/conditions/is_vunerable",false)
 		anim_tree.set("parameters/conditions/time_bomb", false)
 		anim_tree.set("parameters/conditions/time_missile", true)
-		
+
+	if boss_life <= 0:
+		state_machine.travel("death")
 	move_and_slide()
 
 func throw_bomb(): 
@@ -112,7 +117,12 @@ func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	body.velocity = Vector2(50, -300)
+	boss_life -= 1
 	player_hit = true
 	turn_count = 0
 	print("Player hit me")
 	
+func create_lose_boss():
+	var boss_scene = boss_intance.instantiate()
+	add_child(boss_scene)
+	boss_scene.global_position = position
