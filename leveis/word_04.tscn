@@ -270,7 +270,7 @@ scale = Vector2(-3.66153, 3.73918)
 [node name="Break-box" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("9_d81pk")]
-position = Vector2(803, 150)
+position = Vector2(1544, 213)
 
 [node name="BG" type="ParallaxBackground" parent="."]
 
@@ -415,7 +415,6 @@ volume_db = -10.0
 parameters/looping = true
 
 [node name="TankBoy" parent="." instance=ExtResource("27_v7mvx")]
-position = Vector2(1832, 295)
-boss_intance = null
+position = Vector2(1764, 297)
 
 [connection signal="child_entered_tree" from="WorldBoundary/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
