@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bok0qixe2kfjy"]
+[gd_scene load_steps=13 format=3 uid="uid://bok0qixe2kfjy"]
 
 [ext_resource type="Script" path="res://leveis/script/ground_enemy.gd" id="1_8d4s8"]
 [ext_resource type="Texture2D" uid="uid://dl6b5jbyo2ec8" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Walking (16 x 16).png" id="1_v0thc"]
 [ext_resource type="Texture2D" uid="uid://cwlptbvjlx6im" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Hurt (16 x 16).png" id="3_3lclb"]
 [ext_resource type="Texture2D" uid="uid://dpbk6m1vmjmfe" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Standing (16 x 16).png" id="4_v84xo"]
-[ext_resource type="PackedScene" uid="uid://uw1ry6veemqf" path="res://leveis/pefabs/hitbox.tscn" id="5_yajbi"]
 [ext_resource type="AudioStream" uid="uid://dfs51jv1jdeg4" path="res://Sounds/EnemySoundEffect.mp3" id="6_bjooh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yhrp"]
@@ -183,9 +182,9 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6l271"]
 radius = 0.99974
-height = 7.99792
+height = 11.9969
 
-[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
+[node name="GroundEnemy" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_8d4s8")
@@ -214,7 +213,7 @@ position = Vector2(0, -7)
 target_position = Vector2(-11, 0)
 collision_mask = 6
 
-[node name="Hitbox" parent="." instance=ExtResource("5_yajbi")]
+[node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -4)
 
 [node name="Collision" type="CollisionShape2D" parent="Hitbox"]
@@ -232,4 +231,5 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2yhrp")
 
 [connection signal="body_entered" from="HurtBody" to="." method="_on_hurt_body_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

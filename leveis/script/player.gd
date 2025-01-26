@@ -130,6 +130,7 @@ func take_damage (knocback_force := Vector2.ZERO, duration := 0.25):
 	
 	is_hurted = true
 	
+	## TODO: Separar função KnockBack() do TakeDamage()
 	velocity = knocback_force
 	
 	if knocback_force != Vector2.ZERO:
@@ -139,6 +140,7 @@ func take_damage (knocback_force := Vector2.ZERO, duration := 0.25):
 	knockback_tween.parallel().tween_property(self, "knockback_vector", Vector2.ZERO,duration)
 	animation.modulate = Color(1, 0, 0, 1)
 	knockback_tween.parallel().tween_property(animation, "modulate", Color(1, 1, 1, 1), duration)
+	## FIM da função KnockBack()
 	
 	animation.play("hurt")
 		

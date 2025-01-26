@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://8dob42e0m3uf" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/1 - Foreground_scenery.png" id="8_bypm4"]
 [ext_resource type="PackedScene" uid="uid://dq6qkpmueow6d" path="res://actors/base_patrol.tscn" id="9_5qcw1"]
 [ext_resource type="PackedScene" uid="uid://cgxnftu8istol" path="res://leveis/pefabs/moving_platform.tscn" id="10_gbnw2"]
-[ext_resource type="PackedScene" uid="uid://bok0qixe2kfjy" path="res://actors/enemy.tscn" id="12_i51g1"]
+[ext_resource type="PackedScene" uid="uid://bok0qixe2kfjy" path="res://actors/ground_enemy.tscn" id="12_i51g1"]
 [ext_resource type="Texture2D" uid="uid://cx8yuw3hxchue" path="res://assets/EXTRA/ui_buttons_arrow_left_NORMAL.png" id="14_hfk5e"]
 [ext_resource type="Texture2D" uid="uid://c8qoaanot1kqt" path="res://assets/EXTRA/ui_buttons_arrow_left_PRESSED.png" id="15_04nrx"]
 [ext_resource type="Texture2D" uid="uid://d1vrag1d0g1aw" path="res://assets/EXTRA/ui_buttons_arrow_right_NORMAL.png" id="16_6ckaa"]

@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://brub10mnaqdso" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/3 - Cloud_cover_1.png" id="16_6pcff"]
 [ext_resource type="Texture2D" uid="uid://kwbrx4sy2cnj" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/2 - Hills.png" id="17_314en"]
 [ext_resource type="Texture2D" uid="uid://8dob42e0m3uf" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/1 - Foreground_scenery.png" id="18_bdpm1"]
-[ext_resource type="PackedScene" uid="uid://bok0qixe2kfjy" path="res://actors/enemy.tscn" id="19_xpvt8"]
+[ext_resource type="PackedScene" uid="uid://bok0qixe2kfjy" path="res://actors/ground_enemy.tscn" id="19_xpvt8"]
 [ext_resource type="Script" path="res://leveis/script/controls.gd" id="20_j3dsd"]
 [ext_resource type="Texture2D" uid="uid://cx8yuw3hxchue" path="res://assets/EXTRA/ui_buttons_arrow_left_NORMAL.png" id="21_hxedb"]
 [ext_resource type="Texture2D" uid="uid://c8qoaanot1kqt" path="res://assets/EXTRA/ui_buttons_arrow_left_PRESSED.png" id="22_6enqo"]
