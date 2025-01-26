@@ -111,8 +111,6 @@ func _on_player_detector_body_entered(body: Node2D) -> void:
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	set_physics_process(true)
-	#if (body.name == "PlayerClass"):
-		#(body as PlayerClass).take_damage(Vector2(0, 20))
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:

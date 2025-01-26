@@ -9,7 +9,10 @@ func _on_body_entered(body: Node) -> void:
 	get_parent().add_child(explosion_instance)
 	
 	if(body.name == "Player"):
-		(body as PlayerClass).take_damage(Vector2(-20,-20))
+		var player = body as PlayerClass
+		
+		player.take_damage()
+		player.knock_back(Vector2(-200, -200))
 		
 	explosion_instance.global_position = global_position
 	collision.set_deferred("disabled", true)

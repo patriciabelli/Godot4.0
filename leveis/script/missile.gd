@@ -29,7 +29,10 @@ func _on_collision_detection_body_entered(body: Node2D) -> void:
 	get_parent().add_child(explosion_instance)
 	
 	if(body.name == "Player"):
-		(body as PlayerClass).take_damage(Vector2(-20,-20))
+		var player = body as PlayerClass
+		
+		player.take_damage()
+		player.knock_back(Vector2(-200, -200))
 		
 	explosion_instance.global_position = global_position
 	missile_collision.set_deferred("disabled", true)

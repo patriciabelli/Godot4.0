@@ -101,14 +101,15 @@ func _physics_process(delta: float) -> void:
 			collision.get_collider().has_collided_with(collision, self)
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	#var knocback = Vector2((global_position.x - body.global_position.x) * knockback_power, -100)
-	#print(knocback)
-	#take_damage(knocback)
+	print('É AQUI Ó ', body.name)
 	
-	if ray_right.is_colliding():
-		take_damage(Vector2(-200, -200))
-	elif ray_left.is_colliding():
-		take_damage(Vector2(200, -200))
+	if (body.name.to_lower().contains('enemy')):
+		if ray_right.is_colliding():
+			take_damage()
+			knock_back(Vector2(-200, -200))
+		elif ray_left.is_colliding():
+			take_damage()
+			knock_back(Vector2(200, -200))
 		
 		if Globals.player_life <0:
 			queue_free()
@@ -120,7 +121,7 @@ func follow_camera(camera):
 	var camera_path = camera.get_path()
 	remote_transform.remote_path = camera_path
 
-func take_damage (knocback_force := Vector2.ZERO, duration := 0.25):
+func take_damage():
 	if Globals.player_life > 0:
 		Globals.player_life -= 1
 	else:
@@ -130,7 +131,15 @@ func take_damage (knocback_force := Vector2.ZERO, duration := 0.25):
 	
 	is_hurted = true
 	
-	## TODO: Separar função KnockBack() do TakeDamage()
+	animation.play("hurt")
+	
+	animation.modulate = Color(1, 0, 0, 1)
+	knockback_tween = create_tween()
+	knockback_tween.parallel().tween_property(animation, "modulate", Color(1, 1, 1, 1), 0.25)
+	
+	lose_coins()
+	
+func knock_back(knocback_force := Vector2.ZERO, duration := 0.25):
 	velocity = knocback_force
 	
 	if knocback_force != Vector2.ZERO:
@@ -138,13 +147,6 @@ func take_damage (knocback_force := Vector2.ZERO, duration := 0.25):
 	
 	knockback_tween = create_tween()
 	knockback_tween.parallel().tween_property(self, "knockback_vector", Vector2.ZERO,duration)
-	animation.modulate = Color(1, 0, 0, 1)
-	knockback_tween.parallel().tween_property(animation, "modulate", Color(1, 1, 1, 1), duration)
-	## FIM da função KnockBack()
-	
-	animation.play("hurt")
-		
-	lose_coins()
 	
 func _set_state():
 	var state = "idie"
@@ -159,7 +161,8 @@ func _set_state():
 		
 func funcfunc():
 	just_hit_enemy = true
-	take_damage(Vector2(200, -250))
+	take_damage()
+	knock_back(Vector2(-200, -250))
 	animation.play("jump")
 	
 
