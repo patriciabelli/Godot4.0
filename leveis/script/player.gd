@@ -178,22 +178,23 @@ func _on_head_collider_body_entered(body: Node2D) -> void:
 			body.create_coin()
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if Globals.player_life > 0:
-		Globals.player_life -= 1
-		visible = false
-		set_physics_process(false)
-		
-		await  get_tree().create_timer(1.0).timeout
-		Globals.respawn_player()
-		visible = true
-		set_physics_process(true)
-	else:
-		visible = false
-		await  get_tree().create_timer(0.5).timeout
-		player_has_died.emit()
-	#if area.name == "WorldBoundary":
-		#player_has_died.emit()
-		#queue_free()
+	if(not area.name.to_lower().contains('coin')):
+		if Globals.player_life > 0:
+			Globals.player_life -= 1
+			visible = false
+			set_physics_process(false)
+
+			await  get_tree().create_timer(1.0).timeout
+			Globals.respawn_player()
+			visible = true
+			set_physics_process(true)
+		else:
+			visible = false
+			await  get_tree().create_timer(0.5).timeout
+			player_has_died.emit()
+		#if area.name == "WorldBoundary":
+			#player_has_died.emit()
+			#queue_free()
 
 func play_destroy_sfx():
 	var sound_sfx = destroy_sfx.instantiate()
@@ -207,7 +208,7 @@ func lose_coins():
 	set_collision_layer_value(2, true)
 	Globals.coins -= lost_coins
 	for i in lost_coins:
-		var coin = COIN_SCENE.instantiate()
+		var coin: RigidBody2D = COIN_SCENE.instantiate()
 		#get_parent().add_child(coin)
 		get_parent().call_deferred("add_child", coin)
 		coin.global_position = global_position
@@ -216,16 +217,16 @@ func lose_coins():
 	set_collision_layer_value(2, false)
 	
 func _process(delta: float) -> void:
-	for coin in pulling_coin:
+	for coin: Area2D in pulling_coin:
 		if !coin:
 			pulling_coin.erase(coin)
 			
-		#var direction = global_position - coin.global_position
-		#coin.global_position += direction.normalized() * pull_speed * delta
-			#
-		#if coin.global_position.distance(global_position) < 10:
-			#coin.queue_free()
-			#pulling_coin.erase(coin)
+		var direction = global_position - coin.global_position
+		coin.global_position += direction.normalized() * pull_speed * delta
+
+		if coin.global_position.distance_to(global_position) < 10:
+			coin.queue_free()
+			pulling_coin.erase(coin)
 			
 	
 func pull_coins(area: Area2D):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bwprqpwobc8x7"]
+[gd_scene load_steps=56 format=3 uid="uid://bwprqpwobc8x7"]
 
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_3jimi"]
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_7kmjo"]
@@ -171,9 +171,6 @@ pattern_0 = SubResource("TileMapPattern_0gxwx")
 pattern_1 = SubResource("TileMapPattern_24del")
 pattern_2 = SubResource("TileMapPattern_nj360")
 pattern_3 = SubResource("TileMapPattern_cf7l3")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_kc4q2"]
-radius = 24.0832
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qra2f"]
 texture = ExtResource("1_3jimi")
@@ -486,13 +483,6 @@ hitpoints = 2
 
 [node name="Player" parent="." instance=ExtResource("3_0656x")]
 position = Vector2(728, 206)
-
-[node name="Magnecti_area" type="Area2D" parent="Player"]
-collision_mask = 2
-
-[node name="Collision" type="CollisionShape2D" parent="Player/Magnecti_area"]
-visibility_layer = 2
-shape = SubResource("CircleShape2D_kc4q2")
 
 [node name="Hiden_area" type="TileMap" parent="."]
 light_mask = 2

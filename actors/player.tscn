@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7mj0lnwo6bah"]
+[gd_scene load_steps=17 format=3 uid="uid://c7mj0lnwo6bah"]
 
 [ext_resource type="Script" path="res://leveis/script/player.gd" id="1_edhtc"]
 [ext_resource type="Texture2D" uid="uid://bt8ittlds10tk" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Hurt (32 x 32).png" id="2_234n0"]
@@ -86,6 +86,9 @@ size = Vector2(16, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rpp3y"]
 size = Vector2(16, 5)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_53272"]
+radius = 24.0832
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -9)
 collision_mask = 94
@@ -134,6 +137,13 @@ shape = SubResource("RectangleShape2D_rpp3y")
 [node name="Jump_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_e8jyy")
 volume_db = -7.0
+
+[node name="Magnecti_area" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Magnecti_area"]
+visibility_layer = 2
+shape = SubResource("CircleShape2D_53272")
 
 [connection signal="animation_finished" from="Anim" to="." method="_on_anim_animation_finished"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

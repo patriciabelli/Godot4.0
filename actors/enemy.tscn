@@ -183,7 +183,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6l271"]
 radius = 0.99974
-height = 9.9974
+height = 7.99792
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 4
@@ -195,7 +195,9 @@ position = Vector2(0, -8)
 texture = ExtResource("1_v0thc")
 hframes = 2
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="HurtBody" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="HurtBody"]
 position = Vector2(0, -5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2yhrp")
@@ -224,4 +226,10 @@ shape = SubResource("CapsuleShape2D_6l271")
 stream = ExtResource("6_bjooh")
 volume_db = 24.0
 
-[connection signal="finished" from="AudioStreamPlayer" to="Hitbox" method="_on_audio_stream_player_finished"]
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2yhrp")
+
+[connection signal="body_entered" from="HurtBody" to="." method="_on_hurt_body_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
