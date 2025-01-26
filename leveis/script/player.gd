@@ -16,6 +16,8 @@ var knockback_power := 20
 var direction
 var is_hurted = false
 var knockback_tween: Tween
+var pulling_coin : Array = []
+var pull_speed : float = 300.0
 
 #handle jump and gravity
 @export var jump_height := 64
@@ -34,6 +36,8 @@ var fall_gravity
 @onready var destroy_sfx = preload("res://Sounds/destroy_sfx.tscn")
 @onready var audio_stream_player:= $AudioStreamPlayer as AudioStreamPlayer
 @onready var collision: CollisionShape2D = $Collision
+@onready var magnetic_area: Area2D = $Magnecti_area
+
 
 signal player_has_died()
 
@@ -41,6 +45,8 @@ func _ready() -> void:
 	jump_velocity = (jump_height * 2) / max_time_to_peak
 	gravity = (jump_height * 2) / (max_time_to_peak * max_time_to_peak)
 	fall_gravity = gravity * 2
+	
+	magnetic_area.area_entered.connect(pull_coins)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -209,3 +215,20 @@ func lose_coins():
 	await get_tree().create_timer(0.3).timeout
 	set_collision_layer_value(2, false)
 	
+func _process(delta: float) -> void:
+	for coin in pulling_coin:
+		if !coin:
+			pulling_coin.erase(coin)
+			
+		#var direction = global_position - coin.global_position
+		#coin.global_position += direction.normalized() * pull_speed * delta
+			#
+		#if coin.global_position.distance(global_position) < 10:
+			#coin.queue_free()
+			#pulling_coin.erase(coin)
+			
+	
+func pull_coins(area: Area2D):
+	print("A moeda foi detectada")
+	if area.is_in_group("item"):
+		pulling_coin.append(area)
