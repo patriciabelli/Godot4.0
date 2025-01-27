@@ -482,7 +482,7 @@ position = Vector2(576, 104)
 hitpoints = 2
 
 [node name="Player" parent="." instance=ExtResource("3_0656x")]
-position = Vector2(728, 206)
+position = Vector2(232, 190)
 
 [node name="Hiden_area" type="TileMap" parent="."]
 light_mask = 2
@@ -650,6 +650,7 @@ position = Vector2(864, 258)
 [node name="Bg_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("35_8v1c5")
 volume_db = -10.0
+autoplay = true
 parameters/looping = true
 
 [node name="Player_start_position" type="Marker2D" parent="."]

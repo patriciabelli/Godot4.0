@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://d0ws21rdu3sno"]
+[gd_scene load_steps=14 format=4 uid="uid://d0ws21rdu3sno"]
 
 [ext_resource type="Texture2D" uid="uid://5cmdm6ils8yp" path="res://assets/Sprite Pack 2/4 - Percy/Running (32 x 32).png" id="1_1fc6y"]
 [ext_resource type="Script" path="res://leveis/script/trex.gd" id="1_ybcka"]
 [ext_resource type="Texture2D" uid="uid://coppqbwdmcixf" path="res://assets/Sprite Pack 2/4 - Percy/Shooting_Fireball (32 x 32).png" id="2_g3vw7"]
 [ext_resource type="Texture2D" uid="uid://bk3wxvmngxbbp" path="res://assets/Sprite Pack 2/4 - Percy/Hurt (32 x 32).png" id="3_6r78p"]
-[ext_resource type="PackedScene" uid="uid://uw1ry6veemqf" path="res://leveis/pefabs/hitbox.tscn" id="5_ss4cn"]
 
 [sub_resource type="Animation" id="Animation_dku7a"]
 resource_name = "Hurt"
@@ -253,7 +252,7 @@ collision_mask = 2
 position = Vector2(0, -8)
 target_position = Vector2(80, 0)
 
-[node name="Hitbox" parent="." instance=ExtResource("5_ss4cn")]
+[node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -4)
 script = SubResource("GDScript_qb0lm")
 
@@ -266,6 +265,3 @@ debug_color = Color(0.872322, 0.306046, 0.436522, 0.42)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMP3_ynnba")
-
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="finished" from="AudioStreamPlayer" to="Hitbox" method="_on_audio_stream_player_finished"]
