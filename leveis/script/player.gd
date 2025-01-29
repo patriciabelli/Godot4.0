@@ -101,7 +101,6 @@ func _physics_process(delta: float) -> void:
 			collision.get_collider().has_collided_with(collision, self)
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	print('É AQUI Ó ', body.name)
 	
 	if (body.name.to_lower().contains('enemy')):
 		if ray_right.is_colliding():
@@ -183,7 +182,11 @@ func _on_head_collider_body_entered(body: Node2D) -> void:
 			body.create_coin()
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if(not area.name.to_lower().contains('coin')):
+	print('COLIDIU NENE ', area.name)
+	
+	if area.collision_layer == 3:
+	
+	#if(not area.name.to_lower().contains('coin')):
 		if Globals.player_life > 0:
 			Globals.player_life -= 1
 			visible = false
@@ -197,6 +200,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			visible = false
 			await  get_tree().create_timer(0.5).timeout
 			player_has_died.emit()
+			
 		if area.name == "WorldBoundary":
 			player_has_died.emit()
 			queue_free()
@@ -214,7 +218,7 @@ func lose_coins():
 	Globals.coins -= lost_coins
 	for i in lost_coins:
 		var coin: RigidBody2D = COIN_SCENE.instantiate()
-		#get_parent().add_child(coin)
+		get_parent().add_child(coin)
 		get_parent().call_deferred("add_child", coin)
 		coin.global_position = global_position
 		coin.apply_central_impulse(Vector2(randi_range(-100, 100), -250))
@@ -235,6 +239,6 @@ func _process(delta: float) -> void:
 			
 	
 func pull_coins(area: Area2D):
-	print("A moeda foi detectada")
+
 	if area.is_in_group("item"):
 		pulling_coin.append(area)

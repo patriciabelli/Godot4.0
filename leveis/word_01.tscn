@@ -504,7 +504,7 @@ position = Vector2(1480, 239)
 next_level = "res://leveis/word_02.tscn"
 
 [node name="Player" parent="." instance=ExtResource("3_0656x")]
-position = Vector2(224, 200)
+position = Vector2(736, 212)
 
 [node name="BG" type="ParallaxBackground" parent="."]
 
@@ -606,7 +606,7 @@ action = "ui_accept"
 visibility_mode = 1
 
 [node name="Warning_sign" type="Node2D" parent="."]
-position = Vector2(632, -33)
+position = Vector2(776, 230)
 script = ExtResource("22_rxh2c")
 
 [node name="Texture" type="Sprite2D" parent="Warning_sign"]
@@ -626,6 +626,7 @@ shape = SubResource("RectangleShape2D_prnm1")
 
 [node name="Spikes-area" parent="." instance=ExtResource("24_h7xn3")]
 position = Vector2(374, 271)
+collision_layer = 4
 
 [node name="HUD" parent="." instance=ExtResource("25_u6yat")]
 

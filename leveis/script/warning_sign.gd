@@ -21,4 +21,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		texture.hide()
 		if DialogManager.dialog_box != null:
 			DialogManager.dialog_box.queue_free()
-			DialogManager.is_message_active =false
+			DialogManager.is_message_active = false

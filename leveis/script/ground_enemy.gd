@@ -4,7 +4,7 @@ extends EnemyBase
 @onready var texture: Sprite2D = $Texture
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
-func  _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	movement(delta)
 	flip_direction(wall_detector, texture) 
@@ -29,5 +29,4 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		var player = body as PlayerClass
 		player.knock_back(Vector2(0, -250))
 		
-		print('HITBOX do Enemy')
 		audio_stream_player.play()

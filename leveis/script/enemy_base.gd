@@ -23,7 +23,7 @@ func flip_direction(wall_detector: RayCast2D, texture: Node2D):
 			
 		wall_detector.target_position *= -1
 
-func  _apply_gravity(delta):
+func _apply_gravity(delta):
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
