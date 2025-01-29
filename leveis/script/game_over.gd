@@ -3,10 +3,9 @@ extends Control
 @onready var color_rect: ColorRect = $ColorRect
 @onready var v_box_container: VBoxContainer = $VBoxContainer
 
-
-
 func _on_resstart_btn_pressed() -> void:
 	Globals.on_restart.emit()
+	Globals.reload_game()
 	color_rect.visible = false
 	v_box_container.visible = false
 

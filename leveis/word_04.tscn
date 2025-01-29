@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://crbglad7k6tqg"]
+[gd_scene load_steps=42 format=3 uid="uid://crbglad7k6tqg"]
 
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_axk1x"]
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_pfole"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bmxxbjdtbe5jy" path="res://actors/tank_boy.tscn" id="27_v7mvx"]
 [ext_resource type="Texture2D" uid="uid://cc05nog5ukuf0" path="res://assets/Mini FX, Items & UI/Mini UI/Speech_Emotes (16 x 16).png" id="28_25xdu"]
 [ext_resource type="AudioStream" uid="uid://b2sq708c54sv8" path="res://Sounds/bg_music.mp3" id="29_bjl6p"]
+[ext_resource type="PackedScene" uid="uid://dom3g13hmdwao" path="res://scenes/game_over.tscn" id="29_jb5yt"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0gxwx"]
 tile_data = PackedInt32Array(0, 65537, 1)
@@ -417,5 +418,10 @@ parameters/looping = true
 
 [node name="TankBoy" parent="." instance=ExtResource("27_v7mvx")]
 position = Vector2(1764, 297)
+
+[node name="GameOver" parent="." instance=ExtResource("29_jb5yt")]
+offset_right = -640.0
+offset_bottom = -320.0
+scale = Vector2(0.9, 0.9)
 
 [connection signal="child_entered_tree" from="WorldBoundary/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]

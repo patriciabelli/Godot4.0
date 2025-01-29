@@ -11,3 +11,11 @@ func _ready() ->  void:
 
 	if can_spawn:
 		spawn_new_enemy()
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		var player = body as PlayerClass
+		player.knock_back(Vector2(0, -250))
+		Globals.score += 100
+		queue_free()

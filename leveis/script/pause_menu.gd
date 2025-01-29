@@ -1,15 +1,11 @@
 extends CanvasLayer
 
 @onready var menu: Control = $Menu
-
-
 @onready var menu_pause: VBoxContainer = $Menu/Menu_pause
 @onready var resume_btn: Button = $Menu/Menu_pause/Resume_btn
-
 @onready var menu_game_over: VBoxContainer = $Menu/Menu_game_over
 @onready var restart_btn: Button = $Menu/Menu_game_over/Restart_btn
 @onready var moedas_label: Label = $Menu/Menu_game_over/HBoxContainer/Moedas_label
-
 @onready var pause_play: TextureButton = $Pause_play
 
 signal restart_pressed
@@ -19,11 +15,11 @@ func _ready() -> void:
 	menu.visible = false
 	
 #
-#func game_over():
-	#menu.visible = true
-	#menu_game_over.visible = true
-	#moedas_label.text = str(Globals.coins)
-	#restart_btn.grab_focus()
+func game_over():
+	menu.visible = true
+	menu_game_over.visible = true
+	moedas_label.text = str(Globals.coins)
+	restart_btn.grab_focus()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

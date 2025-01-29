@@ -21,6 +21,7 @@ func _on_hurt_body_body_entered(body: Node2D) -> void:
 		body.velocity.y = body.jump_velocity
 
 func _on_audio_stream_player_finished() -> void:
+	Globals.score += 100
 	queue_free()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

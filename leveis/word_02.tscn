@@ -499,7 +499,8 @@ position = Vector2(1272, 225)
 
 [node name="GameOver" parent="." instance=ExtResource("33_lcm4t")]
 visible = false
-offset_right = -143.0
-offset_bottom = 180.0
+offset_right = -640.0
+offset_bottom = -320.0
+scale = Vector2(0.9, 0.9)
 
 [connection signal="child_entered_tree" from="WorldBoundary/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]

@@ -197,9 +197,9 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			visible = false
 			await  get_tree().create_timer(0.5).timeout
 			player_has_died.emit()
-		#if area.name == "WorldBoundary":
-			#player_has_died.emit()
-			#queue_free()
+		if area.name == "WorldBoundary":
+			player_has_died.emit()
+			queue_free()
 
 func play_destroy_sfx():
 	var sound_sfx = destroy_sfx.instantiate()

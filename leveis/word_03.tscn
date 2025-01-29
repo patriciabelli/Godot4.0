@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dq7adi5fh7o1t"]
+[gd_scene load_steps=46 format=3 uid="uid://dq7adi5fh7o1t"]
 
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_36wii"]
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_4kwak"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://brub10mnaqdso" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/3 - Cloud_cover_1.png" id="15_t4krn"]
 [ext_resource type="Texture2D" uid="uid://kwbrx4sy2cnj" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/2 - Hills.png" id="16_r7ndf"]
 [ext_resource type="Texture2D" uid="uid://8dob42e0m3uf" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/1 - Foreground_scenery.png" id="17_dthtv"]
-[ext_resource type="PackedScene" uid="uid://d0ws21rdu3sno" path="res://actors/trex.tscn" id="17_suj3f"]
+[ext_resource type="PackedScene" uid="uid://d0ws21rdu3sno" path="res://trex.tscn" id="17_suj3f"]
 [ext_resource type="PackedScene" uid="uid://bok0qixe2kfjy" path="res://actors/ground_enemy.tscn" id="18_tkcrl"]
 [ext_resource type="Script" path="res://leveis/script/controls.gd" id="19_q1lpb"]
 [ext_resource type="Texture2D" uid="uid://cx8yuw3hxchue" path="res://assets/EXTRA/ui_buttons_arrow_left_NORMAL.png" id="20_vdsc2"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://cc05nog5ukuf0" path="res://assets/Mini FX, Items & UI/Mini UI/Speech_Emotes (16 x 16).png" id="30_pr8l6"]
 [ext_resource type="PackedScene" uid="uid://d2ctij5ju04kp" path="res://leveis/pefabs/goal.tscn" id="31_iuxgl"]
 [ext_resource type="PackedScene" uid="uid://bs3vnlmhvcppa" path="res://leveis/pefabs/checkpoint.tscn" id="32_ddjk1"]
+[ext_resource type="PackedScene" uid="uid://dom3g13hmdwao" path="res://scenes/game_over.tscn" id="32_jvkak"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0gxwx"]
 tile_data = PackedInt32Array(0, 65537, 1)
@@ -525,5 +526,10 @@ position = Vector2(1368, 267)
 position = Vector2(1872, 221)
 script = SubResource("GDScript_bbokm")
 next_level = "res://leveis/word_04.tscn"
+
+[node name="GameOver" parent="." instance=ExtResource("32_jvkak")]
+offset_right = -640.0
+offset_bottom = -320.0
+scale = Vector2(0.9, 0.9)
 
 [connection signal="child_entered_tree" from="WorldBoundary/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]

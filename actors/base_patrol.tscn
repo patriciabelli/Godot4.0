@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dq6qkpmueow6d"]
+[gd_scene load_steps=14 format=3 uid="uid://dq6qkpmueow6d"]
 
 [ext_resource type="Script" path="res://leveis/script/rocket_cherry.gd" id="1_dkvbx"]
 [ext_resource type="Texture2D" uid="uid://ckpnmvcg3mylp" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Flying (16 x 32).png" id="2_p7a12"]
 [ext_resource type="Texture2D" uid="uid://dbj0y5e7s48og" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Hurt_Falling (16 x 32).png" id="3_w0whc"]
-[ext_resource type="PackedScene" uid="uid://uw1ry6veemqf" path="res://leveis/pefabs/hitbox.tscn" id="4_21ok7"]
 [ext_resource type="AudioStream" uid="uid://dfs51jv1jdeg4" path="res://Sounds/EnemySoundEffect.mp3" id="5_m3afd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fwcck"]
@@ -103,7 +102,7 @@ visible = false
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_75nlm")
 
-[node name="Hitbox" parent="Rocket_cherry" instance=ExtResource("4_21ok7")]
+[node name="Hitbox" type="Area2D" parent="Rocket_cherry"]
 
 [node name="Collision" type="CollisionShape2D" parent="Rocket_cherry/Hitbox"]
 visible = false

@@ -24,22 +24,24 @@ func _ready() -> void:
 	
 	control.time_is_up.connect(on_game_over)
 	
+	Globals.coins = 0 
+	Globals.score = 0
+	Globals.player_life = 5
+	Globals.respawn_player()
+	
 func _process(delta: float) -> void:
 	if camera.position.y >= camera_y_limit:
 		camera.position.y = camera_y_limit
 
-func reload_game():
-	await get_tree().create_timer(1.0).timeout
-	var player = player_scene.instantiate()
-	add_child(player)
-	control.reset_clock_timer()
-	Globals.player = player
-	Globals.player.follow_camera(camera)
-	Globals.player.player_has_died.connect(on_game_over)
-	Globals.coins = 0 
-	Globals.score = 0
-	Globals.player_life = 3
-	Globals.respawn_player()
+
+	
+	#await get_tree().create_timer(1.0).timeout
+	#var player = player_scene.instantiate()
+	#add_child(player)
+	#control.reset_clock_timer()
+	#Globals.player = player
+	#Globals.player.follow_camera(camera)
+	#Globals.player.player_has_died.connect(on_game_over)
 	
 func on_game_over():
 	if (find_child('Player')):
@@ -51,14 +53,9 @@ func on_game_over():
 	controls.visible = false
 	#pause_menu.visible = false
 	
-	
 
 func _on_game_over_on_restart() -> void:
-	reload_game()
 	hud.visible = true
 	transition.visible = true
 	pause_menu.visible = true
-
-func _on_pause_menu_restart_pressed() -> void:
-	reload_game()
 	
