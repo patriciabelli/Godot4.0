@@ -37,7 +37,7 @@ var fall_gravity
 @onready var audio_stream_player:= $AudioStreamPlayer as AudioStreamPlayer
 @onready var collision: CollisionShape2D = $Collision
 @onready var magnetic_area: Area2D = $Magnecti_area
-
+@onready var world_boundary: Area2D = $WorldBoundary
 
 signal player_has_died()
 
@@ -182,11 +182,7 @@ func _on_head_collider_body_entered(body: Node2D) -> void:
 			body.create_coin()
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	print('COLIDIU NENE ', area.name)
-	
 	if area.collision_layer == 3:
-	
-	#if(not area.name.to_lower().contains('coin')):
 		if Globals.player_life > 0:
 			Globals.player_life -= 1
 			visible = false

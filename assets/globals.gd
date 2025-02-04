@@ -20,8 +20,8 @@ var bomb_instance = null
 func respawn_player():
 	if is_checkpoint_active:
 		player.position = current_checkpoint.global_position
-	else:
-		player.global_position = player_start_position.global_position
+	#else:
+		#player.global_position = player_start_position.global_position
 
 func reload_game():
 	get_parent().get_tree().reload_current_scene()

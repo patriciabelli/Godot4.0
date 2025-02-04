@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b7fuyrlxqljfp"]
+[gd_scene load_steps=48 format=3 uid="uid://b7fuyrlxqljfp"]
 
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_hci57"]
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="3_l602j"]
@@ -32,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://b2sq708c54sv8" path="res://Sounds/bg_music.mp3" id="31_ythoe"]
 [ext_resource type="PackedScene" uid="uid://bs3vnlmhvcppa" path="res://leveis/pefabs/checkpoint.tscn" id="32_u1q5b"]
 [ext_resource type="PackedScene" uid="uid://dom3g13hmdwao" path="res://scenes/game_over.tscn" id="33_lcm4t"]
+[ext_resource type="PackedScene" uid="uid://b7p5xpi24l601" path="res://leveis/pefabs/pause_menu.tscn" id="34_bu0d2"]
 [ext_resource type="PackedScene" uid="uid://7xg6833a60qo" path="res://leveis/pefabs/transition.tscn" id="34_k8coe"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0gxwx"]
@@ -461,7 +462,7 @@ visibility_mode = 1
 position = Vector2(1383, 253)
 
 [node name="WorldBoundary" type="Area2D" parent="."]
-position = Vector2(536, 399)
+position = Vector2(512, 399)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary"]
@@ -502,5 +503,10 @@ visible = false
 offset_right = -640.0
 offset_bottom = -320.0
 scale = Vector2(0.9, 0.9)
+
+[node name="Player_start_position" type="Marker2D" parent="."]
+position = Vector2(152, 239)
+
+[node name="Pause_menu" parent="." instance=ExtResource("34_bu0d2")]
 
 [connection signal="child_entered_tree" from="WorldBoundary/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]

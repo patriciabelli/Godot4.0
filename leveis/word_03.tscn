@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dq7adi5fh7o1t"]
+[gd_scene load_steps=47 format=3 uid="uid://dq7adi5fh7o1t"]
 
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_36wii"]
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_4kwak"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ctij5ju04kp" path="res://leveis/pefabs/goal.tscn" id="31_iuxgl"]
 [ext_resource type="PackedScene" uid="uid://bs3vnlmhvcppa" path="res://leveis/pefabs/checkpoint.tscn" id="32_ddjk1"]
 [ext_resource type="PackedScene" uid="uid://dom3g13hmdwao" path="res://scenes/game_over.tscn" id="32_jvkak"]
+[ext_resource type="PackedScene" uid="uid://b7p5xpi24l601" path="res://leveis/pefabs/pause_menu.tscn" id="33_ddf48"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0gxwx"]
 tile_data = PackedInt32Array(0, 65537, 1)
@@ -367,7 +368,7 @@ position = Vector2(1408, 199)
 [node name="Break-box" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("11_gtgvc")]
-position = Vector2(184, 215)
+position = Vector2(176, 213)
 
 [node name="BG" type="ParallaxBackground" parent="."]
 
@@ -447,7 +448,7 @@ position = Vector2(1304, 267)
 [node name="Enemy2" parent="Enemies" instance=ExtResource("18_tkcrl")]
 position = Vector2(952, 271)
 
-[node name="Trex" parent="." instance=ExtResource("17_suj3f")]
+[node name="Trex" parent="Enemies" instance=ExtResource("17_suj3f")]
 position = Vector2(1864, 271)
 
 [node name="Controls" type="CanvasLayer" parent="."]
@@ -531,5 +532,10 @@ next_level = "res://leveis/word_04.tscn"
 offset_right = -640.0
 offset_bottom = -320.0
 scale = Vector2(0.9, 0.9)
+
+[node name="Player_start_position" type="Marker2D" parent="."]
+position = Vector2(176, 239)
+
+[node name="Pause_menu" parent="." instance=ExtResource("33_ddf48")]
 
 [connection signal="child_entered_tree" from="WorldBoundary/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]

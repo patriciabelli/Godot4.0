@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bwprqpwobc8x7"]
+[gd_scene load_steps=55 format=3 uid="uid://bwprqpwobc8x7"]
 
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_3jimi"]
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_7kmjo"]
@@ -304,8 +304,6 @@ shader_parameter/move_speed = 0.05
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prnm1"]
 size = Vector2(32, 29.5)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p3wo7"]
-
 [node name="Word-01" type="Node2D"]
 position = Vector2(0, -6)
 script = ExtResource("1_7kmjo")
@@ -504,7 +502,7 @@ position = Vector2(1480, 239)
 next_level = "res://leveis/word_02.tscn"
 
 [node name="Player" parent="." instance=ExtResource("3_0656x")]
-position = Vector2(736, 212)
+position = Vector2(224, 212)
 
 [node name="BG" type="ParallaxBackground" parent="."]
 
@@ -635,26 +633,18 @@ collision_layer = 4
 [node name="Checkpoint2" parent="Checkpoint" instance=ExtResource("28_q061o")]
 position = Vector2(1160, 272)
 
-[node name="WorldBoundary" type="Area2D" parent="."]
-position = Vector2(1016, 392)
-collision_layer = 2
-
-[node name="Boundary" type="CollisionShape2D" parent="WorldBoundary"]
-position = Vector2(0, 6)
-shape = SubResource("WorldBoundaryShape2D_p3wo7")
-
 [node name="Transition" parent="." instance=ExtResource("34_kdgu5")]
 
 [node name="Bg_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("35_8v1c5")
 volume_db = -10.0
+autoplay = true
 parameters/looping = true
 
 [node name="Player_start_position" type="Marker2D" parent="."]
 position = Vector2(224, 254)
 
 [node name="Pause_menu" parent="." instance=ExtResource("29_bgd37")]
-visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 visible = false
@@ -672,5 +662,4 @@ offset_right = -640.0
 offset_bottom = -320.0
 scale = Vector2(0.9, 0.9)
 
-[connection signal="child_entered_tree" from="WorldBoundary/Boundary" to="." method="_on_collision_shape_2d_child_entered_tree"]
 [connection signal="restart_pressed" from="Pause_menu" to="." method="_on_pause_menu_restart_pressed"]

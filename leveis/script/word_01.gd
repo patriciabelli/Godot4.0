@@ -51,7 +51,7 @@ func on_game_over():
 	hud.visible = false
 	transition.visible = false
 	controls.visible = false
-	#pause_menu.visible = false
+	pause_menu.visible = false
 	
 
 func _on_game_over_on_restart() -> void:

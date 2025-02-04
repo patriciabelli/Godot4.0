@@ -13,8 +13,8 @@ signal restart_pressed
 func _ready() -> void:
 	#Globals.player.player_has_died.connect(game_over)
 	menu.visible = false
+	pause_play.visible = true
 	
-#
 func game_over():
 	menu.visible = true
 	menu_game_over.visible = true
