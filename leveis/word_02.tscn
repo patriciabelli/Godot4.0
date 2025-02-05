@@ -194,7 +194,7 @@ shader_parameter/move_speed = 0.05
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vc34o"]
 size = Vector2(32, 29.5)
 
-[node name="Word-02" type="Node2D"]
+[node name="World-02" type="Node2D"]
 position = Vector2(0, -7)
 script = ExtResource("1_hci57")
 
