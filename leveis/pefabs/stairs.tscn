@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://db4hu5k6vwju8"]
+
+[ext_resource type="Script" path="res://leveis/script/stairs.gd" id="1_ml0sq"]
+[ext_resource type="PackedScene" uid="uid://c8iyjcgiqltpw" path="res://tile_block.tscn" id="1_yenar"]
+
+[node name="Stairs" type="Node2D"]
+script = ExtResource("1_ml0sq")
+
+[node name="Block" parent="." instance=ExtResource("1_yenar")]
+
+[node name="Block2" parent="." instance=ExtResource("1_yenar")]
+position = Vector2(16, 0)
+
+[node name="Block3" parent="." instance=ExtResource("1_yenar")]
+position = Vector2(16, -16)
+
+[node name="Block4" parent="." instance=ExtResource("1_yenar")]
+position = Vector2(32, 0)
+
+[node name="Block5" parent="." instance=ExtResource("1_yenar")]
+position = Vector2(32, -16)
+
+[node name="Block6" parent="." instance=ExtResource("1_yenar")]
+position = Vector2(32, -32)

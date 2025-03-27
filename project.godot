@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogManager="*res://singletons/dialog_manager.gd"
-Globals="*res://assets/globals.gd"
+Globals="*res://singletons/globals.gd"
 
 [display]
 
@@ -55,7 +55,8 @@ pause={
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="itens"
 2d_physics/layer_5="hitbox"
-2d_physics/layer_6="hurtbo"
+2d_physics/layer_6="hurtbox"
+2d_physics/layer_8="boss"
 
 [rendering]
 

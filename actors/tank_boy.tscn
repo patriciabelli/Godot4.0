@@ -281,7 +281,7 @@ graph_offset = Vector2(0, 41.2438)
 size = Vector2(27, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1bvy"]
-size = Vector2(20, 5)
+size = Vector2(30, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gmne"]
 size = Vector2(282, 16)
@@ -321,7 +321,7 @@ turbulence_initial_displacement_min = 1.49012e-06
 turbulence_initial_displacement_max = 1.49012e-06
 
 [node name="TankBoy" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 136
 collision_mask = 3
 script = ExtResource("1_tseca")
 boss_intance = ExtResource("2_tcep7")
@@ -376,7 +376,7 @@ wait_time = 2.5
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt_box"]
-position = Vector2(0, -18.5)
+position = Vector2(-1, -13.5)
 shape = SubResource("RectangleShape2D_x1bvy")
 disabled = true
 
@@ -387,7 +387,8 @@ position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_8gmne")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(-1, -12)
+scale = Vector2(1.5, 1.2)
 
 [node name="Explosion" type="GPUParticles2D" parent="."]
 position = Vector2(0, -12)

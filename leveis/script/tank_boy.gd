@@ -36,6 +36,8 @@ func _physics_process(delta: float) -> void:
 	match state_machine.get_current_node():
 		"moving":
 			$Hurt_box/CollisionShape2D .set_deferred("disabled", true)
+			set_collision_layer_value(8, true)
+			set_collision_layer_value(3, false)
 			if direction == 1:
 				velocity.x = SPEED * delta
 				sprite_2d.flip_h = true
@@ -57,6 +59,8 @@ func _physics_process(delta: float) -> void:
 		"vunerable":
 			can_launch_missile = false
 			can_launch_bomb = false
+			set_collision_layer_value(8, false)
+			set_collision_layer_value(3, true)
 			await get_tree().create_timer(1.0).timeout
 			player_hit = false
 			$Hurt_box/CollisionShape2D.set_deferred("disabled", false)
@@ -75,9 +79,12 @@ func _physics_process(delta: float) -> void:
 		anim_tree.set("parameters/conditions/is_vunerable",false)
 		anim_tree.set("parameters/conditions/time_bomb", false)
 		anim_tree.set("parameters/conditions/time_missile", true)
-
+	
+		
 	if boss_life <= 0:
 		state_machine.travel("death")
+		$Hurt_box/CollisionShape2D .set_deferred("disabled", true)
+		
 	move_and_slide()
 
 func throw_bomb(): 
@@ -119,7 +126,9 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 	player_hit = true
 	turn_count = 0
 	print("Player hit me")
-	
+	if boss_life <= 0:
+		Globals.boss_defeated.emit()
+		
 func create_lose_boss():
 	var boss_scene = boss_intance.instantiate()
 	add_child(boss_scene)

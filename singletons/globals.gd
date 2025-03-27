@@ -6,6 +6,7 @@ signal coins_updated
 signal score_updated
 signal Globals_updated
 signal on_restart
+signal boss_defeated
 
 #setters
 var coins := 0

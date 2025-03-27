@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://crbglad7k6tqg"]
+[gd_scene load_steps=46 format=3 uid="uid://crbglad7k6tqg"]
 
 [ext_resource type="Script" path="res://leveis/script/word_01.gd" id="1_axk1x"]
 [ext_resource type="Texture2D" uid="uid://7cafpd27x6v3" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="2_pfole"]
@@ -30,6 +30,8 @@
 [ext_resource type="AudioStream" uid="uid://b2sq708c54sv8" path="res://Sounds/bg_music.mp3" id="29_bjl6p"]
 [ext_resource type="PackedScene" uid="uid://dom3g13hmdwao" path="res://scenes/game_over.tscn" id="29_jb5yt"]
 [ext_resource type="PackedScene" uid="uid://b7p5xpi24l601" path="res://leveis/pefabs/pause_menu.tscn" id="30_qjfd7"]
+[ext_resource type="PackedScene" uid="uid://d2ctij5ju04kp" path="res://leveis/pefabs/goal.tscn" id="31_hd1pk"]
+[ext_resource type="PackedScene" uid="uid://db4hu5k6vwju8" path="res://leveis/pefabs/stairs.tscn" id="32_i7yoh"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0gxwx"]
 tile_data = PackedInt32Array(0, 65537, 1)
@@ -182,6 +184,22 @@ shader_parameter/move_speed = 0.05
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vc34o"]
 size = Vector2(32, 29.5)
 
+[sub_resource type="GDScript" id="GDScript_f7fm0"]
+script/source = "extends Area2D
+
+@onready var transition: CanvasLayer = $\"../Transition\"
+#@onready var sushi: AudioStreamPlayer = $Sushi as AudioStreamPlayer
+@export var next_level : String = \"\"
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\" and !next_level == \"\":
+		Globals.is_checkpoint_active = false
+		transition.chance_scene(next_level)
+	else :
+		print (\"nenhuma cena carregada\")
+"
+
 [node name="World-04" type="Node2D"]
 position = Vector2(0, -7)
 script = ExtResource("1_axk1x")
@@ -272,7 +290,7 @@ scale = Vector2(-3.66153, 3.73918)
 [node name="Break-box" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("9_d81pk")]
-position = Vector2(111, 197)
+position = Vector2(1664, 172)
 
 [node name="BG" type="ParallaxBackground" parent="."]
 
@@ -417,7 +435,6 @@ shape = SubResource("RectangleShape2D_vc34o")
 [node name="Bg_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_bjl6p")
 volume_db = -10.0
-autoplay = true
 parameters/looping = true
 
 [node name="GameOver" parent="." instance=ExtResource("29_jb5yt")]
@@ -429,5 +446,12 @@ scale = Vector2(0.9, 0.9)
 position = Vector2(110, 227)
 
 [node name="Pause_menu" parent="." instance=ExtResource("30_qjfd7")]
+
+[node name="Goal" parent="." instance=ExtResource("31_hd1pk")]
+position = Vector2(1872, 221)
+script = SubResource("GDScript_f7fm0")
+
+[node name="Stairs" parent="." instance=ExtResource("32_i7yoh")]
+position = Vector2(1769, 287)
 
 [connection signal="child_entered_tree" from="WorldBoundary/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
